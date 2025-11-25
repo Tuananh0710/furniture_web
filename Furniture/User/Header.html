@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Header Example</title>
+
+    <!-- Font Awesome (để dùng icon) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="Header.css" />
+  </head>
+
+  <body>
+    <header>
+      <!-- Dòng trên -->
+      <div class="top-bar">
+        <!-- Ô tìm kiếm -->
+        <div class="search-box">
+          <input type="text" placeholder="Search..." />
+          <button>
+            <a href="Products.html"
+              ><i class="fa-solid fa-magnifying-glass"></i
+            ></a>
+          </button>
+        </div>
+
+        <!-- Logo -->
+        <div class="logo">
+          <a href="Home.html">Loom</a>
+        </div>
+
+        <!-- Các icon bên phải -->
+        <div class="icons">
+          <div>
+            <i class="fa-regular fa-user"></i
+            ><a href="In4_Account.html">Account</a>
+          </div>
+          <div>
+            <i class="fa-solid fa-location-dot"></i
+            ><a href="MyStore.html">My Store</a>
+          </div>
+          <div>
+            <i class="fa-solid fa-cart-shopping"></i
+            ><a href="Cart.html">Cart</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dòng menu -->
+      <nav class="menu" id="menu">
+        <a href="Home.html" class="brand">New</a>
+        <ul class="nav-list">
+          <li class="nav-item has-submenu">
+            <a href="Products.html" class="nav-link">Living room</a>
+            <ul class="submenu">
+              <li><a href="Products.html">Sofa</a></li>
+              <li><a href="Products.html">Chair</a></li>
+              <li><a href="Products.html">Bookcase</a></li>
+            </ul>
+          </li>
+          <li class="nav-item has-submenu">
+            <a href="Products.html" class="nav-link">Bed room</a>
+            <ul class="submenu">
+              <li><a href="Products.html">Bed</a></li>
+              <li><a href="Products.html">Nightstands</a></li>
+              <li><a href="Products.html">Dresser</a></li>
+            </ul>
+          </li>
+          <li class="nav-item has-submenu">
+            <a href="Products.html" class="nav-link">Dining & Kitchen</a>
+            <ul class="submenu">
+              <li><a href="Products.html">Dining tables</a></li>
+              <li><a href="Products.html">Dining chair</a></li>
+              <li><a href="Products.html">Bar & Kitchen</a></li>
+            </ul>
+          </li>
+          <li class="nav-item has-submenu">
+            <a href="Products.html" class="nav-link">Home Office</a>
+            <ul class="submenu">
+              <li><a href="Products.html">Office</a></li>
+              <li><a href="Products.html">Desks</a></li>
+              <li><a href="Products.html">Desks Chairs</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </header>
+  </body>
+</html>

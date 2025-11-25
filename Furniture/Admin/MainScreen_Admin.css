@@ -1,0 +1,140 @@
+body {
+  font-family: "Segoe UI", sans-serif;
+  background: #f8f8f8;
+  margin: 0;
+  padding: 0px;
+}
+
+.container {
+  width: 80%;
+  margin: 30px 200px;
+}
+.date {
+  padding-left: 1197px;
+}
+.date input[type="date"] {
+  color: black;
+  margin-bottom: 20px;
+  font-size: 20px;
+  justify-content: right;
+  align-items: right;
+}
+
+.summary {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.card {
+  flex: 1;
+  color: white;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.card .icon {
+  font-size: 28px;
+  margin-right: 12px;
+  padding-bottom: 10px;
+}
+.card .one {
+  margin-bottom: 20px;
+}
+.card .four {
+  margin-bottom: 12px;
+}
+.green {
+  background: #8cc63f;
+}
+.blue {
+  background: #3b9edc;
+}
+.red {
+  background: #e74c3c;
+}
+.orange {
+  background: #f1b70e;
+}
+
+.info-section {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.info-box {
+  flex: 1;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.info-box h4 {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 5px;
+  margin-top: 0;
+  color: #333;
+}
+
+.info-box.yellow {
+  border-color: #ddd;
+}
+
+.info-box ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.info-box li {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+  border-bottom: 1px dashed #eee;
+}
+
+.info-box li span {
+  font-weight: bold;
+  color: #000;
+}
+
+.bottom-section {
+  display: flex;
+  gap: 20px;
+}
+
+.bottom-box {
+  flex: 1;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.bottom-box h4 {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 5px;
+  margin-top: 0;
+}
+
+.loading {
+  color: gray;
+  font-style: italic;
+  padding: 10px 0;
+}
+
+@media (max-width: 900px) {
+  .summary,
+  .info-section,
+  .bottom-section {
+    flex-direction: column;
+  }
+}

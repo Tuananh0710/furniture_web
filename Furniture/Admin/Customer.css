@@ -1,0 +1,235 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background: #e5e4e4;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+  padding-left: 70px;
+  padding-right: 60px;
+  background-color: rgb(240, 240, 240);
+}
+
+/* Sidebar */
+.sidebar {
+  width: 25%;
+  background: #eaf3fb;
+  padding: 15px;
+  margin-top: 25px;
+  margin-right: 20px;
+  border-radius: 10px;
+  height: 380px;
+}
+
+.filter-box {
+  background: white;
+  border: 1px solid #cddce8;
+  border-radius: 6px;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+.filter-box h4 {
+  background: #0090da;
+  color: white;
+  font-size: 16px;
+  padding: 6px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.filter-box input,
+.filter-box select {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+}
+
+/* Main content */
+.main-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.header h2 {
+  color: #000000;
+}
+
+.buttons button {
+  margin-left: 8px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.add {
+  background: #4caf50;
+  font-weight: 500;
+}
+.add:hover {
+  background-color: #18911c;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+th {
+  background: #cce6ff;
+}
+
+.icon:hover {
+  cursor: pointer;
+}
+#Delete:hover {
+  color: red;
+}
+#Update:hover {
+  color: #1ea222;
+}
+tbody tr:hover {
+  background: #f1faff;
+}
+
+.pagination {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pagination button {
+  padding: 4px 10px;
+  border: 1px solid #ccc;
+  background: #fff;
+  cursor: pointer;
+}
+
+.pagination .active {
+  background: #2196f3;
+  color: #fff;
+  border-color: #2196f3;
+}
+
+/* ===== Form thêm khách hàng ===== */
+.modal {
+  display: none; /* Ẩn mặc định */
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+/* Nội dung hộp form */
+.modal-content {
+  background: #fff;
+  padding: 25px 30px;
+  width: 450px;
+  border-radius: 10px;
+  position: relative;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  animation: showModal 0.3s ease;
+}
+
+@keyframes showModal {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Tiêu đề form */
+.modal-content h2 {
+  text-align: center;
+  margin-bottom: 15px;
+  color: #0078d7;
+}
+
+/* Form */
+#customerForm {
+  display: flex;
+  flex-direction: column;
+}
+
+#customerForm label {
+  margin-top: 10px;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+#customerForm input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 4px;
+  font-size: 14px;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+.submit-btn,
+.cancel-btn {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.submit-btn {
+  background: #0078d7;
+  color: #fff;
+}
+
+.cancel-btn {
+  background: #ccc;
+}
+
+.cancel-btn:hover {
+  background: #b5b5b5;
+}
+
+.submit-btn:hover {
+  background: #005fa3;
+}

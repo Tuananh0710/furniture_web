@@ -1,0 +1,157 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: #000000;
+  background-color: #ffffff;
+}
+
+footer {
+  background-color: #ffffff;
+  padding: 40px 80px 0;
+  border-top: 45px solid #2a9557;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-bottom: 80px;
+  margin-left: 80px;
+  margin-right: 80px;
+}
+
+/* --- Cột 1: Logo + thông tin --- */
+.footer-logo {
+  width: 200px;
+
+  margin-left: 100px;
+}
+
+.footer-logo .logo1 {
+  width: 150px;
+  margin-bottom: 10px;
+  font-size: 30px;
+}
+
+.footer-logo p {
+  margin-bottom: 8px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.footer-logo p b {
+  color: #000;
+}
+
+/* --- Các cột chính sách --- */
+.footer-column {
+  min-width: 160px;
+}
+
+.footer-column h3 {
+  font-size: 16px;
+  color: #166b2f;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+.footer-column ul {
+  list-style: none;
+}
+
+.footer-column ul li {
+  margin-bottom: 8px;
+}
+
+.footer-column ul li a {
+  text-decoration: none;
+  color: #222;
+  font-size: 15px;
+}
+
+.footer-column ul li a:hover {
+  color: #166b2f;
+  text-decoration: underline;
+}
+
+/* --- Cột chăm sóc khách hàng --- */
+.footer-contact {
+  margin-right: 70px;
+}
+.footer-contact h3 {
+  color: #166b2f;
+  font-size: 16px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.footer-contact .hotline {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #166b2f;
+}
+
+.footer-contact .hotline i {
+  background-color: #166b2f;
+  color: white;
+  border-radius: 50%;
+  padding: 10px;
+  margin-right: 10px;
+}
+
+/* --- Đăng ký email --- */
+.newsletter h3 {
+  color: #166b2f;
+  font-size: 16px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.newsletter input {
+  padding: 8px 10px;
+  width: 180px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+.newsletter button {
+  padding: 8px 12px;
+  border: none;
+  background-color: #166b2f;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+.newsletter button a {
+  text-decoration: none;
+  color: white;
+}
+
+.newsletter button:hover {
+  background-color: #0f5324;
+}
+
+/* --- Bản quyền --- */
+.copyright {
+  text-align: center;
+  font-size: 14px;
+  color: #333;
+  background-color: #cfcfcf;
+  padding: 12px 0;
+  margin-bottom: -39px;
+}
+
+.copyright a {
+  color: #166b2f;
+  text-decoration: none;
+  font-weight: bold;
+}

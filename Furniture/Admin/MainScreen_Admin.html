@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Today's Report</title>
+    <link rel="stylesheet" href="MainScreen_Admin.css" />
+  </head>
+  <body>
+    <!-- Section to display the header -->
+    <div id="header_admin"></div>
+
+    <!-- Script to automatically load header.html -->
+    <script>
+      fetch("Header_Admin.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("header_admin").innerHTML = data;
+        })
+        .catch((error) => console.error("Error loading header:", error));
+    </script>
+
+    <div class="container">
+      <!-- Date -->
+      <div class="date">
+        <input type="date" />
+      </div>
+
+      <!-- Summary Cards -->
+      <div class="summary">
+        <div class="card green">
+          <div class="icon one">💳</div>
+          <div>
+            <p>Sales Revenue</p>
+            <h3>0</h3>
+          </div>
+        </div>
+
+        <div class="card blue">
+          <div class="icon">🛒</div>
+          <div>
+            <p>Orders: 0</p>
+            <p>Products: 0</p>
+          </div>
+        </div>
+
+        <div class="card red">
+          <div class="icon">↩️</div>
+          <div>
+            <p>Returned Items</p>
+            <h3>0</h3>
+          </div>
+        </div>
+
+        <div class="card orange">
+          <div class="icon four">☁️</div>
+          <div>
+            <p>Online Orders</p>
+            <h3>0</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 2: Information Tables -->
+      <div class="info-section">
+        <div class="info-box">
+          <h4>▶ Activity</h4>
+          <ul>
+            <li>Sales Revenue <span>0</span></li>
+            <li>Number of Orders <span>0</span></li>
+            <li>Number of Products <span>0</span></li>
+            <li>Customer Returns <span>0</span></li>
+          </ul>
+        </div>
+
+        <div class="info-box yellow">
+          <h4>⚙️ Inventory Information</h4>
+          <ul>
+            <li>In Stock <span>0</span></li>
+            <li>Out of Stock <span>0</span></li>
+            <li>Low Stock <span>0</span></li>
+            <li>Overstocked <span>0</span></li>
+          </ul>
+        </div>
+
+        <div class="info-box yellow">
+          <h4>🧾 Product Information</h4>
+          <ul>
+            <li>Products / Manufacturers <span>0</span></li>
+            <li>No Selling Price <span>0</span></li>
+            <li>No Purchase Price <span>0</span></li>
+            <li>Uncategorized Items <span>0</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Row 3: Charts & News -->
+      <div class="bottom-section">
+        <div class="bottom-box">
+          <h4>📊 Weekly Sales Chart</h4>
+          <p class="loading">Loading ...</p>
+        </div>
+        <div class="bottom-box">
+          <h4>🌐 Web Information</h4>
+          <p class="loading">Loading ...</p>
+        </div>
+        <div class="bottom-box">
+          <h4>📰 Industry News</h4>
+          <p class="loading">Loading ...</p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Example: Simple fake loading animation
+      document.addEventListener("DOMContentLoaded", () => {
+        const numbers = document.querySelectorAll("h3, li span");
+        numbers.forEach((num) => {
+          num.style.opacity = 0;
+          setTimeout(() => {
+            num.style.transition = "opacity 1s";
+            num.style.opacity = 1;
+          }, 500);
+        });
+      });
+    </script>
+  </body>
+</html>

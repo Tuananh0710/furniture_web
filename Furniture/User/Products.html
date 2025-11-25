@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Products</title>
+    <link rel="stylesheet" href="Products.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <div id="header"></div>
+    <script>
+      fetch("Header.html")
+        .then((res) => res.text())
+        .then((data) => (document.getElementById("header").innerHTML = data));
+    </script>
+
+    <div class="breadcrumb"><a href="#">Home</a> &gt; All Products</div>
+
+    <div class="container">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div class="filter-box">
+          <div class="filter-title">CATEGORIES</div>
+          <ul>
+            <li class="Category">Dining Tables</li>
+            <li class="Category">Dining Chairs</li>
+            <li class="Category">Bar & Kitchen</li>
+          </ul>
+        </div>
+
+        <div class="filter-box">
+          <div class="filter-title">PRICE RANGE</div>
+          <ul>
+            <li><input type="radio" name="price" /> Under 500,000₫</li>
+            <li><input type="radio" name="price" /> 500,000₫ - 1,000,000₫</li>
+            <li><input type="radio" name="price" /> 1,000,000₫ - 2,000,000₫</li>
+            <li><input type="radio" name="price" /> 2,000,000₫ - 3,000,000₫</li>
+            <li><input type="radio" name="price" /> 3,000,000₫ - 5,000,000₫</li>
+            <li><input type="radio" name="price" /> Above 5,000,000₫</li>
+          </ul>
+        </div>
+
+        <div class="filter-box">
+          <div class="filter-title">COLORS</div>
+          <div class="colors">
+            <div class="color-circle" style="background: #a0522d"></div>
+            <div class="color-circle" style="background: #000"></div>
+            <div class="color-circle" style="background: #808080"></div>
+            <div class="color-circle" style="background: #fff"></div>
+            <div class="color-circle" style="background: #8b0000"></div>
+            <br />
+            <div class="color-circle" style="background: #008000"></div>
+            <div class="color-circle" style="background: #ffff00"></div>
+            <div class="color-circle" style="background: #ffa500"></div>
+            <div class="color-circle" style="background: #00ced1"></div>
+            <div class="color-circle" style="background: #f08080"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Section -->
+      <div class="products">
+        <div class="products-header">
+          <h2>All Products</h2>
+        </div>
+
+        <div class="product-grid">
+          <!-- Product Item -->
+          <a href="Product_Detail.html">
+            <div class="product-card">
+              <img src="LivingSpace.webp" alt="Product 1" />
+              <div class="product-info">
+                <div class="product-name">
+                  Margaux Beige 36-inch Vanity Cabinet
+                </div>
+                <div class="price">4,500,000₫</div>
+                <div class="old-price">5,900,000₫</div>
+              </div>
+            </div>
+          </a>
+
+          <div class="product-card">
+            <img src="LivingSpace.webp" alt="Product 2" />
+            <div class="product-info">
+              <div class="product-name">Pink Modern Desk</div>
+              <div class="price">3,600,000₫</div>
+              <div class="old-price">6,900,000₫</div>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <img src="LivingSpace.webp" alt="Product 3" />
+            <div class="product-info">
+              <div class="product-name">5-Tier Decorative Wooden Shelf</div>
+              <div class="price">7,000,000₫</div>
+              <div class="old-price">8,500,000₫</div>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <img src="LivingSpace.webp" alt="Product 4" />
+            <div class="product-info">
+              <div class="product-name">
+                Ronald 36-inch White Vanity Cabinet
+              </div>
+              <div class="price">3,950,000₫</div>
+              <div class="old-price">5,800,000₫</div>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <img src="LivingSpace.webp" alt="Product 5" />
+            <div class="product-info">
+              <div class="product-name">
+                Ronald 36-inch White Vanity Cabinet
+              </div>
+              <div class="price">3,950,000₫</div>
+              <div class="old-price">5,800,000₫</div>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <img src="LivingSpace.webp" alt="Product 6" />
+            <div class="product-info">
+              <div class="product-name">
+                Ronald 36-inch White Vanity Cabinet
+              </div>
+              <div class="price">3,950,000₫</div>
+              <div class="old-price">5,800,000₫</div>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <img src="LivingSpace.webp" alt="Product 7" />
+            <div class="product-info">
+              <div class="product-name">
+                Ronald 36-inch White Vanity Cabinet
+              </div>
+              <div class="price">3,950,000₫</div>
+              <div class="old-price">5,800,000₫</div>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <img src="LivingSpace.webp" alt="Product 8" />
+            <div class="product-info">
+              <div class="product-name">
+                Ronald 36-inch White Vanity Cabinet
+              </div>
+              <div class="price">3,950,000₫</div>
+              <div class="old-price">5,800,000₫</div>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <img src="LivingSpace.webp" alt="Product 9" />
+            <div class="product-info">
+              <div class="product-name">
+                Ronald 36-inch White Vanity Cabinet
+              </div>
+              <div class="price">3,950,000₫</div>
+              <div class="old-price">5,800,000₫</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+    <script>
+      fetch("Footer.html")
+        .then((res) => res.text())
+        .then((data) => (document.getElementById("footer").innerHTML = data));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product List</title>
+    <link rel="stylesheet" href="Products_Admin.css" />
+  </head>
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+
+  <body>
+    <!-- ========== HEADER ========== -->
+    <div id="header_admin"></div>
+    <script>
+      fetch("Header_Admin.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("header_admin").innerHTML = data;
+        });
+    </script>
+
+    <!-- ========== PRODUCT LIST ========== -->
+    <div class="list-container">
+      <!-- SIDEBAR -->
+      <div class="sidebar">
+        <div class="filter-box">
+          <h4>Search</h4>
+          <input type="text" placeholder="By product code, name" />
+        </div>
+
+        <div class="filter-box">
+          <h4>Product Type</h4>
+          <label><input type="checkbox" /> Table</label>
+          <label><input type="checkbox" /> Chair</label>
+          <label><input type="checkbox" /> Cabinet</label>
+          <label><input type="checkbox" /> Bed</label>
+          <label><input type="checkbox" /> Combo</label>
+        </div>
+
+        <div class="filter-box">
+          <h4>Stock</h4>
+          <label><input type="radio" name="stock" checked /> All</label>
+          <label><input type="radio" name="stock" /> Low stock</label>
+          <label><input type="radio" name="stock" /> In stock</label>
+          <label><input type="radio" name="stock" /> Out of stock</label>
+        </div>
+      </div>
+
+      <!-- MAIN -->
+      <div class="main-content">
+        <div class="list-header">
+          <h2>Products</h2>
+          <div class="table-actions">
+            <button class="add btn-add">+ Add Product</button>
+          </div>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Product Code</th>
+              <th>Product Name</th>
+              <th>Category</th>
+              <th>Selling Price</th>
+              <th>Cost Price</th>
+              <th>Stock</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="Pro1">
+                <a href="#" class="btn-show-detail">VD0511-Navy-M</a>
+              </td>
+              <td>One side V-neck Dress</td>
+              <td>Table</td>
+              <td>735,000</td>
+              <td>185,000</td>
+              <td>309</td>
+              <td class="icon">
+                <i class="fa-solid fa-pen-to-square btn-edit"></i>
+                &nbsp;&nbsp;&nbsp;
+                <i class="fa-solid fa-trash" id="Delete"></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Pagination -->
+        <div class="pagination">
+          <button>&laquo;</button>
+          <button class="active">1</button>
+          <button>2</button>
+          <button>3</button>
+          <button>&raquo;</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== PRODUCT DETAIL FORM ========== -->
+    <div id="productDetailModal" class="detail-modal">
+      <div class="modal-content detail-container-box">
+        <div class="detail-header">
+          <h1>Product Details</h1>
+          <button class="btn-detail-close">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <div class="detail-content">
+          <!-- IMAGE -->
+          <div class="detail-image-block">
+            <img src="../User/1.jpg" class="detail-img" />
+            <div class="detail-thumbs">
+              <img src="../User/2.jpg" />
+              <img src="../User/3.png" />
+            </div>
+          </div>
+
+          <!-- INFO -->
+          <div class="detail-info">
+            <h2>Natural Oak Dining Table</h2>
+            <p><b>Product Code:</b> SP001</p>
+
+            <table class="detail-info-table">
+              <tr>
+                <th>Category:</th>
+                <td>Dining Table</td>
+              </tr>
+              <tr>
+                <th>Quantity:</th>
+                <td>10</td>
+              </tr>
+              <tr>
+                <th>Cost Price:</th>
+                <td>3,000,000₫</td>
+              </tr>
+              <tr>
+                <th>Selling Price:</th>
+                <td>4,500,000₫</td>
+              </tr>
+              <tr>
+                <th>Material:</th>
+                <td>Oak wood</td>
+              </tr>
+              <tr>
+                <th>Color:</th>
+                <td>Light Brown</td>
+              </tr>
+              <tr>
+                <th>Size:</th>
+                <td>160 x 80 x 75 cm</td>
+              </tr>
+              <tr>
+                <th>Weight:</th>
+                <td>25 kg</td>
+              </tr>
+              <tr>
+                <th>Brand:</th>
+                <td>VFurniture</td>
+              </tr>
+            </table>
+
+            <div class="detail-description">
+              <h3>Detailed Description</h3>
+              <p>
+                The natural oak dining table features a minimalist Scandinavian
+                design, offering elegance and simplicity. The solid oak wood
+                provides durability and a warm aesthetic, making it suitable for
+                modern interiors...
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== EDIT PRODUCT FORM ========== -->
+    <div id="editProductModal" class="edit-modal">
+      <div class="modal-content edit-container-box">
+        <div class="edit-header">
+          <h1>Edit Product Information</h1>
+          <button class="btn-edit-close">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <!-- IMAGE -->
+        <div class="edit-image-block">
+          <img src="../User/5.png" class="edit-img" />
+          <input type="file" id="productImageInput" />
+
+          <div class="edit-thumbs">
+            <img src="../User/5.png" />
+            <img src="../User/1.jpg" />
+            <img src="../User/2.jpg" />
+          </div>
+        </div>
+
+        <!-- INPUTS -->
+        <div class="edit-input-grid">
+          <div class="input-group">
+            <label>Product Code:</label>
+            <input type="text" value="SP001" />
+          </div>
+
+          <div class="input-group">
+            <label>Product Name:</label>
+            <input type="text" value="Natural Oak Dining Table" />
+          </div>
+
+          <div class="input-group">
+            <label>Category:</label>
+            <select>
+              <option>Table</option>
+              <option>Chair</option>
+              <option>Cabinet</option>
+              <option>Sofa</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label>Material:</label>
+            <input type="text" value="Natural Oak Wood" />
+          </div>
+
+          <div class="input-group">
+            <label>Cost Price:</label>
+            <input type="text" value="3000000" />
+          </div>
+
+          <div class="input-group">
+            <label>Selling Price:</label>
+            <input type="text" value="4500000" />
+          </div>
+
+          <div class="input-group">
+            <label>Color:</label>
+            <input type="text" value="Light Brown" />
+          </div>
+
+          <div class="input-group">
+            <label>Size:</label>
+            <input type="text" value="160 x 80 x 75 cm" />
+          </div>
+
+          <div class="input-group">
+            <label>Weight:</label>
+            <input type="text" value="45kg" />
+          </div>
+
+          <div class="input-group">
+            <label>Quantity:</label>
+            <input type="text" value="10" />
+          </div>
+        </div>
+
+        <!-- DESCRIPTION -->
+        <div class="edit-description">
+          <label><b>Detailed Description:</b></label>
+          <textarea>Natural oak dining table...</textarea>
+        </div>
+
+        <!-- BUTTONS -->
+        <div class="edit-buttons">
+          <button class="btn-save">
+            <i class="fa-solid fa-floppy-disk"></i> Save
+          </button>
+          <button class="btn-cancel">
+            <i class="fa-solid fa-xmark"></i> Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== ADD NEW PRODUCT FORM ========== -->
+    <div id="ADDProductModal" class="edit-modal">
+      <div class="modal-content edit-container-box">
+        <div class="edit-header">
+          <h1>Add New Product</h1>
+          <button class="NUT-X">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <!-- Image Upload -->
+        <div class="form-group">
+          <br /><br />
+          <label>Upload Images</label>
+          <div class="image-upload" id="imageUpload">
+            <i class="fas fa-cloud-upload-alt"></i>
+            <p>Click to select or drag & drop images here</p>
+            <input
+              type="file"
+              id="imageInput"
+              accept="image/*"
+              multiple
+              style="display: none"
+            />
+          </div>
+          <div id="image-preview"></div>
+        </div>
+
+        <!-- INPUTS -->
+        <div class="edit-input-grid">
+          <div class="input-group">
+            <label>Product Code:</label>
+            <input type="text" />
+          </div>
+
+          <div class="input-group">
+            <label>Product Name:</label>
+            <input type="text" />
+          </div>
+
+          <div class="input-group">
+            <label>Category:</label>
+            <select>
+              <option>Table</option>
+              <option>Chair</option>
+              <option>Cabinet</option>
+              <option>Sofa</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label>Material:</label>
+            <input type="text" />
+          </div>
+
+          <div class="input-group">
+            <label>Cost Price:</label>
+            <input type="text" />
+          </div>
+
+          <div class="input-group">
+            <label>Selling Price:</label>
+            <input type="text" />
+          </div>
+
+          <div class="input-group">
+            <label>Color:</label>
+            <input type="text" />
+          </div>
+
+          <div class="input-group">
+            <label>Size:</label>
+            <input type="text" />
+          </div>
+
+          <div class="input-group">
+            <label>Weight:</label>
+            <input type="text" />
+          </div>
+
+          <div class="input-group">
+            <label>Quantity:</label>
+            <input type="text" />
+          </div>
+        </div>
+
+        <!-- DESCRIPTION -->
+        <div class="edit-description">
+          <label><b>Detailed Description:</b></label>
+          <textarea></textarea>
+        </div>
+
+        <!-- BUTTONS -->
+        <div class="edit-buttons">
+          <button class="btn-save">
+            <i class="fa-solid fa-floppy-disk"></i> Save
+          </button>
+          <button class="NUT-HUY">
+            <i class="fa-solid fa-xmark"></i> Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="Products_Admin.js"></script>
+  </body>
+</html>

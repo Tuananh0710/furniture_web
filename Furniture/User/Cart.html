@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Shopping Cart</title>
+    <link rel="stylesheet" href="cart.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <div id="header"></div>
+    <script>
+      fetch("Header.html")
+        .then((res) => res.text())
+        .then((data) => (document.getElementById("header").innerHTML = data));
+    </script>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+      <a href="Home.html">Home</a> &gt; <span>Shopping Cart</span>
+    </div>
+
+    <!-- Shopping Cart -->
+    <div class="cart-container">
+      <h1>Your Shopping Cart</h1>
+
+      <table class="cart-table">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td class="product-info">
+              <button class="remove">&times;</button>
+              <img src="LivingSpace.webp" alt="Work Desk" />
+              <a href="Product_Detail.html">
+                <span>Pink Modern Article Work Desk</span>
+                <div>
+                  <p><b>Material: </b>Wood</p>
+                </div>
+                <div>
+                  <p><b>Color:</b> pink</p>
+                </div>
+                <div>
+                  <p><b>Size:</b> 1.3m x 1.8m</p>
+                </div>
+              </a>
+            </td>
+            <td>3,600,000₫</td>
+            <td><input type="number" value="1" min="1" max="100" /></td>
+            <!--Nhớ thay đổi số lượng mua max = số lượng tồn kho của sản phẩm-->
+            <td>3,600,000₫</td>
+          </tr>
+
+          <tr>
+            <td class="product-info">
+              <button class="remove">&times;</button>
+              <img src="1.jpg" alt="Dining Chair" />
+              <a></a>
+              <span>Bayside Furnishing Dining Chair</span>
+            </td>
+            <td>1,150,000₫</td>
+            <td><input type="number" value="1" min="1" /></td>
+            <td>1,150,000₫</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="cart-summary">
+        <p>Total: <span class="total">4,750,000₫</span></p>
+        <div class="cart-buttons">
+          <a href="Products.html" class="continue">Continue Shopping</a>
+          <a href="Checkout.html" class="checkout">Proceed to Checkout</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+    <script>
+      fetch("Footer.html")
+        .then((res) => res.text())
+        .then((data) => (document.getElementById("footer").innerHTML = data));
+    </script>
+  </body>
+</html>

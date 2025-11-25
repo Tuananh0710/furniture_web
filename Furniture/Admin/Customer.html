@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Customer List</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="Customer.css" />
+  </head>
+  <body>
+    <!-- Section to display the header -->
+    <div id="header_admin"></div>
+
+    <!-- Script to automatically load header.html -->
+    <script>
+      fetch("Header_Admin.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("header_admin").innerHTML = data;
+        })
+        .catch((error) => console.error("Error loading header:", error));
+    </script>
+
+    <div class="container">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div class="filter-box">
+          <h4>Customer Group</h4>
+          <select>
+            <option>All Groups</option>
+          </select>
+        </div>
+
+        <div class="filter-box">
+          <h4>Search</h4>
+          <input type="text" placeholder="By ID, name, or phone number" />
+        </div>
+
+        <div class="filter-box">
+          <h4>Birthday</h4>
+          <input name="birth" placeholder="Dao Van Manh" disabled />
+        </div>
+      </div>
+
+      <!-- Customer Information -->
+      <div class="main-content">
+        <div class="header">
+          <h2>Customers</h2>
+          <div class="buttons">
+            <button class="add">+ Add Customer</button>
+          </div>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Customer ID</th>
+              <th>Customer Name</th>
+              <th>Phone</th>
+              <th>Address</th>
+              <th>Email</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="pointer">KH000004</td>
+              <td>Nguyen Huong Lan</td>
+              <td>01625727655</td>
+              <td>34 Tran Dai Nghia, Hai Ba Trung, Ha Noi</td>
+              <td>manhvan0902@gmail.com</td>
+              <td class="icon">
+                <i class="fa-solid fa-pen-to-square" id="Update"></i>
+                &nbsp;&nbsp;&nbsp;
+                <i class="fa-solid fa-trash" id="Delete"></i>
+              </td>
+            </tr>
+
+            <tr>
+              <td>KH000004</td>
+              <td>Nguyen Huong Lan</td>
+              <td>01625727655</td>
+              <td>34 Tran Dai Nghia, Hai Ba Trung, Ha Noi</td>
+              <td>manhvan0902@gmail.com</td>
+              <td class="icon">
+                <i class="fa-solid fa-pen-to-square" id="Update"></i>
+                &nbsp;&nbsp;&nbsp;
+                <i class="fa-solid fa-trash" id="Delete"></i>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="pointer">KH000004</td>
+              <td>Nguyen Huong Lan</td>
+              <td>01625727655</td>
+              <td>34 Tran Dai Nghia, Hai Ba Trung, Ha Noi</td>
+              <td>manhvan0902@gmail.com</td>
+              <td class="icon">
+                <i class="fa-solid fa-pen-to-square" id="Update"></i>
+                &nbsp;&nbsp;&nbsp;
+                <i class="fa-solid fa-trash" id="Delete"></i>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="pointer">KH000004</td>
+              <td>Nguyen Huong Lan</td>
+              <td>01625727655</td>
+              <td>34 Tran Dai Nghia, Hai Ba Trung, Ha Noi</td>
+              <td>manhvan0902@gmail.com</td>
+              <td class="icon">
+                <i class="fa-solid fa-pen-to-square" id="Update"></i>
+                &nbsp;&nbsp;&nbsp;
+                <i class="fa-solid fa-trash" id="Delete"></i>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="pointer">KH000004</td>
+              <td>Nguyen Huong Lan</td>
+              <td>01625727655</td>
+              <td>34 Tran Dai Nghia, Hai Ba Trung, Ha Noi</td>
+              <td>manhvan0902@gmail.com</td>
+              <td class="icon">
+                <i class="fa-solid fa-pen-to-square"></i>
+                &nbsp;&nbsp;&nbsp;
+                <i class="fa-solid fa-trash"></i>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="pointer">KH000004</td>
+              <td>Nguyen Huong Lan</td>
+              <td>01625727655</td>
+              <td>34 Tran Dai Nghia, Hai Ba Trung, Ha Noi</td>
+              <td>manhvan0902@gmail.com</td>
+              <td class="icon">
+                <i class="fa-solid fa-pen-to-square"></i>
+                &nbsp;&nbsp;&nbsp;
+                <i class="fa-solid fa-trash"></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="pagination">
+          <button>&laquo;</button>
+          <button class="active">1</button>
+          <button>2</button>
+          <button>3</button>
+          <button>&raquo;</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Customer Form -->
+    <div id="addCustomerForm" class="modal">
+      <div class="modal-content">
+        <span class="close"></span>
+        <h2>Add New Customer</h2>
+        <form id="customerForm">
+          <label>Customer ID</label>
+          <input type="text" placeholder="Ex: KH000010" required />
+
+          <label>Customer Name</label>
+          <input type="text" placeholder="Enter customer name" required />
+
+          <label>Phone</label>
+          <input type="text" placeholder="Phone number" required />
+
+          <label>Address</label>
+          <input type="text" placeholder="Address" required />
+
+          <label>Email</label>
+          <input type="email" placeholder="Email address" required />
+
+          <div class="form-buttons">
+            <button type="submit" class="submit-btn" id="close">Save</button>
+            <button type="button" class="cancel-btn">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Edit Customer Form -->
+    <div id="UpdateCustomerForm" class="modal">
+      <div class="modal-content">
+        <span class="close_update"></span>
+        <h2>Edit Customer Information</h2>
+        <form id="customerForm">
+          <label>Customer ID</label>
+          <input type="text" value="KH000004" required />
+
+          <label>Customer Name</label>
+          <input type="text" value="Dao Van Manh" required />
+
+          <label>Phone</label>
+          <input type="text" value="0399065210" required />
+
+          <label>Address</label>
+          <input
+            type="text"
+            value="34 Tran Dai Nghia, Hai Ba Trung, Ha Noi"
+            required
+          />
+
+          <label>Email</label>
+          <input type="email" value="manhvan0902@gmail.com" required />
+
+          <div class="form-buttons">
+            <button type="submit" class="submit-btn">Save</button>
+            <button type="button" class="cancel-btn">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script src="Customer.js"></script>
+  </body>
+</html>
