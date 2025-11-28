@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout - VFurniture</title>
+    <link rel="stylesheet" href="Checkout.css" />
+  </head>
+
+  <body>
+    <!-- Header -->
+    <div id="header"></div>
+    <script>
+      fetch("Header.html")
+        .then((res) => res.text())
+        .then((data) => (document.getElementById("header").innerHTML = data));
+    </script>
+
+    <!-- Checkout Container -->
+    <div class="checkout-container">
+      <!-- LEFT: Shipping Info -->
+      <div class="checkout-left">
+        <h2>Shipping Information</h2>
+
+        <form class="shipping-form">
+          <label>Full Name</label>
+          <input type="text" placeholder="Fullname" />
+
+          <label>Email</label>
+          <input type="email" placeholder="Email" />
+
+          <label>Address</label>
+          <input type="text" placeholder="Your address" />
+
+          <label>Phone Number</label>
+          <input type="text" placeholder="Phone number" />
+
+          <label>Notes (optional)</label>
+          <textarea
+            placeholder="Add a note for the delivery person..."
+          ></textarea>
+        </form>
+
+        <h2>Shipping Method</h2>
+        <div class="shipping-method">
+          <label>
+            <input type="radio" checked /> Sapo Express - J&T Express
+            <span class="price">492,400 VND</span>
+          </label>
+        </div>
+
+        <h2>Payment Method</h2>
+        <div class="payment-method">
+          <label> <input type="radio" checked /> Cash on Delivery (COD) </label>
+        </div>
+      </div>
+
+      <!-- RIGHT: Order Summary -->
+      <div class="checkout-right">
+        <h2>Order Summary (3 items)</h2>
+
+        <div class="order-item">
+          <img src="LivingSpace.webp" alt="Work Desk" />
+          <div>
+            <p>Pink Modern Article Work Desk</p>
+            <span>3,600,000 VND</span>
+          </div>
+        </div>
+
+        <div class="order-item">
+          <img src="1.jpg" alt="Dining Chair" />
+          <div>
+            <p>Bayside Furnishing Dining Chair</p>
+            <span>1,150,000 VND</span>
+          </div>
+        </div>
+
+        <div class="order-item">
+          <img src="1.jpg" alt="Bedside Cabinet" />
+          <div>
+            <p>Core Bedside Cabinet</p>
+            <span>1,500,000 VND</span>
+          </div>
+        </div>
+
+        <div class="summary">
+          <p>Subtotal: <span>6,250,000 VND</span></p>
+          <p>Shipping Fee: <span>492,400 VND</span></p>
+          <h3>Total: <span class="total">6,742,400 VND</span></h3>
+        </div>
+
+        <div class="actions">
+          <a href="Cart.html" class="back">⟵ Back to Cart</a>
+          <a href="Completed.html" class="order-btn">Place Order</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+    <script>
+      fetch("footer.html")
+        .then((res) => res.text())
+        .then((data) => (document.getElementById("footer").innerHTML = data));
+    </script>
+  </body>
+</html>

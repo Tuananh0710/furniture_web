@@ -1,0 +1,163 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: #222;
+  background-color: #fff;
+  padding: 40px 1px;
+}
+
+/* Container chính */
+.container {
+  max-width: 1200px;
+  padding: 20px 1px 50px 10px;
+  background-color: #fff;
+  margin-left: 250px;
+  margin-right: 90px;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 15px;
+  color: #000000;
+  margin-bottom: 25px;
+  margin-left: 1px;
+}
+.breadcrumb a {
+  color: #000000;
+  text-decoration: none;
+}
+.breadcrumb a:hover {
+  color: #15803d; /* Xanh lá */
+  text-decoration: underline;
+}
+.breadcrumb span {
+  margin: 0 3px;
+  color: #000000;
+}
+
+/* Tiêu đề */
+.header h1 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #000000;
+}
+
+/* Layout Grid */
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+}
+
+/* Media Query cho màn hình lớn hơn */
+@media (min-width: 1024px) {
+  .content-grid {
+    grid-template-columns: 1fr 1.5fr; /* Cột bản đồ rộng hơn một chút */
+  }
+}
+
+/* Khu vực thông tin liên hệ */
+.contact-details {
+  margin-bottom: 30px;
+}
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+.contact-item-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 15px;
+  color: #15803d;
+  flex-shrink: 0;
+  padding-top: 1px;
+}
+.contact-item p {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #4b5563;
+}
+.contact-item strong {
+  font-weight: 600;
+}
+
+/* Form Liên hệ */
+.contact-form h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 15px;
+}
+.form-group {
+  margin-bottom: 15px;
+}
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 16px;
+  box-sizing: border-box;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #15803d;
+  box-shadow: 0 0 0 1px #15803d;
+}
+.form-group textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #9ca3af;
+}
+
+/* Nút Gửi */
+.submit-button {
+  display: inline-block;
+  width: 192px; /* Khoảng 192px theo ảnh */
+  padding: 12px 24px;
+  background-color: #15803d; /* Màu xanh lá cây đậm */
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.submit-button:hover {
+  background-color: #17b752; /* Xanh lá cây nhạt hơn khi hover */
+  transform: translateY(-1px);
+}
+
+/* Khu vực Bản đồ */
+.map-container {
+  width: 100%;
+  height: 500px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+}
+.map-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block; /* Loại bỏ khoảng trắng dưới iframe */
+}

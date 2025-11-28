@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chi tiết đơn hàng</title>
+
+    <link rel="stylesheet" href="Orders_Detail_Admin.css" />
+  </head>
+  <body>
+    <!-- Section to display the header -->
+    <div id="header_admin"></div>
+    <script>
+      fetch("Header_Admin.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("header_admin").innerHTML = data;
+        })
+        .catch((error) => console.error("Error loading header:", error));
+    </script>
+
+    <div class="order-container">
+      <h2>Chi tiết đơn hàng</h2>
+
+      <!-- Thông tin đơn hàng -->
+      <div class="section">
+        <h3>Thông tin đơn hàng</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Mã đơn hàng</label>
+            <input type="text" value="KH0000004" />
+          </div>
+          <div class="form-group">
+            <label>Trạng thái</label>
+            <select>
+              <option>Pending</option>
+              <option>Shipping</option>
+              <option>Completed</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Ngày Bán</label>
+            <input type="Date" />
+          </div>
+          <div class="form-group">
+            <label>Phương thức thanh toán</label>
+            <select>
+              <option>Tiền Mặt</option>
+              <option>Chuyển Khoản</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Thông tin giao hàng -->
+      <div class="section">
+        <h3>Thông tin giao hàng</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Người nhận</label>
+            <input type="text" value="Ngô Minh An" />
+          </div>
+          <div class="form-group">
+            <label>Điện thoại</label>
+            <input type="text" value="0344557899" />
+          </div>
+          <div class="form-group">
+            <label>Địa chỉ</label>
+            <input type="text" value="120 Minh Khai - Hai Bà Trưng - Hà Nội" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Danh sách hàng hóa -->
+      <div class="section">
+        <h3>Danh sách hàng hóa</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Mã hàng hóa</th>
+              <th>Tên hàng</th>
+              <th>Số lượng</th>
+              <th>Màu</th>
+              <th>Đơn giá</th>
+              <th>Thành tiền</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>SP00001</td>
+              <td>Sofa Sofa Sofa Sofa</td>
+              <td>1</td>
+              <td>Pink</td>
+              <td>449.000</td>
+              <td>449.000</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="payment-summary">
+        <div class="summary-row">
+          <span>Tạm tính:</span>
+          <span>30.000.000₫</span>
+        </div>
+        <div class="summary-row">
+          <span>Phí vận chuyển:</span>
+          <span>0</span>
+        </div>
+        <div class="summary-row total">
+          <span><strong>Tổng cộng:</strong></span>
+          <span><strong>28.030.000₫</strong></span>
+        </div>
+      </div>
+
+      <!-- Nút hành động -->
+      <div class="actions">
+        <button class="save-btn">Lưu</button>
+        <button class="cancel-btn">
+          <a href="Orders_Admin.html">Hủy bỏ</a>
+        </button>
+      </div>
+    </div>
+
+    <script>
+      document.querySelector(".save-btn").addEventListener("click", () => {
+        if (confirm("Bạn có chắc muốn lưu đơn hàng này không?")) {
+          alert("Đơn hàng đã được lưu!");
+        }
+      });
+    </script>
+  </body>
+</html>

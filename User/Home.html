@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modern Comfort - Elegant Furniture</title>
+    <link rel="stylesheet" href="Home.css" />
+  </head>
+  <body>
+    <!-- Section to display the header -->
+    <div id="header"></div>
+
+    <!-- Script to automatically load header.html -->
+    <script>
+      fetch("Header.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("header").innerHTML = data;
+        })
+        .catch((error) => console.error("Error loading header:", error));
+    </script>
+
+    <!-- Hero Banner -->
+    <section class="hero-slider">
+      <div
+        class="slide active"
+        style="
+          background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c');
+        "
+      >
+        <div class="overlay">
+          <h1>Modern Comfort</h1>
+          <p>Bring warmth and style to your home</p>
+          <a href="#" class="btn">Explore</a>
+        </div>
+      </div>
+      <div
+        class="slide"
+        style="
+          background-image: url('https://images.unsplash.com/photo-1615874959474-d609969a20ed');
+        "
+      >
+        <div class="overlay">
+          <h1>Scandinavian Style</h1>
+          <p>Natural, simple, elegant living spaces</p>
+          <a href="#" class="btn">Explore</a>
+        </div>
+      </div>
+      <div
+        class="slide"
+        style="
+          background-image: url('https://th.bing.com/th/id/R.910c7271ea5e57f5cf3846ababd3cfa4?rik=R%2ftNgkgamMLW7w&pid=ImgRaw&r=0');
+        "
+      >
+        <div class="overlay">
+          <h1>Minimalist Living</h1>
+          <p>Design your perfect home</p>
+          <a href="#" class="btn">Explore</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: New & Featured -->
+    <section class="section">
+      <h2>New & Featured</h2>
+      <div class="gallery">
+        <div class="item">
+          <img
+            src="https://images.unsplash.com/photo-1582582494700-9d0e6e1b1f19"
+            alt=""
+          />
+          <p>Luxury Sofa Set</p>
+        </div>
+        <div class="item">
+          <img
+            src="https://images.unsplash.com/photo-1598300056883-4f3c3f2e8b97"
+            alt=""
+          />
+          <p>Dining Table</p>
+        </div>
+        <div class="item">
+          <img
+            src="https://images.unsplash.com/photo-1616627563828-9f26c0f7b7b0"
+            alt=""
+          />
+          <p>Modern Desks</p>
+        </div>
+        <div class="item">
+          <img
+            src="https://images.unsplash.com/photo-1616628182506-1b97c6eaa2d1"
+            alt=""
+          />
+          <p>Nightstands</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Living Space -->
+    <section class="full-image">
+      <img src="LivingSpace.webp" alt="" style="height: 100vh" />
+      <div class="text-overlay">
+        <h2>Living Space</h2>
+        <p>Relax and enjoy your beautiful interior</p>
+      </div>
+    </section>
+
+    <!-- Section: More to Explore -->
+    <section class="section">
+      <h2>More to Explore</h2>
+      <div class="gallery">
+        <div class="item">
+          <img
+            src="https://images.unsplash.com/photo-1625231334160-857f010bdc48"
+            alt=""
+          />
+          <p>Minimal Desk</p>
+        </div>
+        <div class="item">
+          <img
+            src="https://images.unsplash.com/photo-1558211583-d26f610c91a3"
+            alt=""
+          />
+          <p>Modern Coffee Table</p>
+        </div>
+        <div class="item">
+          <img
+            src="https://images.unsplash.com/photo-1616486700912-3b53b4df5c2d"
+            alt=""
+          />
+          <p>TV Console</p>
+        </div>
+        <div class="item">
+          <img
+            src="https://images.unsplash.com/photo-1623387641163-9e2a18d3c814"
+            alt=""
+          />
+          <p>Reading Chair</p>
+        </div>
+        <div class="item">
+          <img
+            src="https://images.unsplash.com/photo-1622495896312-9cc08a50a73c"
+            alt=""
+          />
+          <p>Bedroom Decor</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final Banner -->
+    <section class="half-banner">
+      <div class="half left">
+        <img src="7.png" alt="Bed" />
+      </div>
+      <div class="half right">
+        <h2>A World of Wonder</h2>
+        <p>
+          Explore warm and stylish spaces designed for comfort and creativity.
+        </p>
+        <a href="#" class="btn">Discover More</a>
+      </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="product-section">
+      <h2>Featured Products</h2>
+      <div class="product-list">
+        <div class="product">
+          <img
+            src="https://images.unsplash.com/photo-1616627563828-9f26c0f7b7b0"
+            alt=""
+          />
+          <h3>Premium Leather Sofa Set</h3>
+          <p class="price">28,000,000 VND</p>
+        </div>
+        <div class="product">
+          <img
+            src="https://images.unsplash.com/photo-1616628182506-1b97c6eaa2d1"
+            alt=""
+          />
+          <h3>Round Walnut Wood Dining Table</h3>
+          <p class="price">9,980,000 VND</p>
+        </div>
+        <div class="product">
+          <img
+            src="https://images.unsplash.com/photo-1558211583-d26f610c91a3"
+            alt=""
+          />
+          <h3>Modern Coffee Table</h3>
+          <p class="price">3,450,000 VND</p>
+        </div>
+        <div class="product">
+          <img
+            src="https://images.unsplash.com/photo-1616486700912-3b53b4df5c2d"
+            alt=""
+          />
+          <h3>Luxury TV Console</h3>
+          <p class="price">6,500,000 VND</p>
+        </div>
+        <div class="product">
+          <img
+            src="https://images.unsplash.com/photo-1622495896312-9cc08a50a73c"
+            alt=""
+          />
+          <h3>Scandinavian Dining Table</h3>
+          <p class="price">12,000,000 VND</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- New Arrivals -->
+    <section class="product-section">
+      <h2>New Arrivals</h2>
+      <div class="product-list">
+        <div class="product">
+          <img
+            src="https://images.unsplash.com/photo-1598300056883-4f3c3f2e8b97"
+            alt=""
+          />
+          <h3>Nordic Oak Wood Table</h3>
+          <p class="price">6,900,000 VND</p>
+        </div>
+        <div class="product">
+          <img
+            src="https://images.unsplash.com/photo-1578898887932-c7c894047b8f"
+            alt=""
+          />
+          <h3>Glass Top Coffee Table</h3>
+          <p class="price">4,350,000 VND</p>
+        </div>
+        <div class="product">
+          <img
+            src="https://images.unsplash.com/photo-1615874959474-d609969a2ed"
+            alt=""
+          />
+          <h3>Wood Decor Cabinet</h3>
+          <p class="price">5,800,000 VND</p>
+        </div>
+        <div class="product">
+          <img
+            src="https://images.unsplash.com/photo-1623387641163-9e2a18d3c814"
+            alt=""
+          />
+          <h3>Minimalist Work Desk</h3>
+          <p class="price">3,900,000 VND</p>
+        </div>
+        <div class="product">
+          <a href="Product_Detail.html" class="Detail">
+            <img src="LivingSpace.webp" alt="" />
+            <h3>Multipurpose Bookshelf</h3>
+            <p class="price">4,800,000 VND</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section to display the footer -->
+    <div id="footer"></div>
+
+    <!-- Script to automatically load footer.html -->
+    <script>
+      fetch("footer.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("footer").innerHTML = data;
+        })
+        .catch((error) => console.error("Error loading footer:", error));
+    </script>
+
+    <script src="Home.js"></script>
+  </body>
+</html>

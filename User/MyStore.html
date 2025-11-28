@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Information</title>
+    <!-- Google Font Inter -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="MyStore.css" />
+  </head>
+  <body>
+    <!-- Section to display the header -->
+    <div id="header"></div>
+    <!-- Script to automatically load Header.html -->
+    <script>
+      fetch("Header.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("header").innerHTML = data;
+        })
+        .catch((error) => console.error("Error loading header:", error));
+    </script>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+      <a href="#">Home</a>
+      <span>&gt;</span>
+      <span>Contact</span>
+    </div>
+
+    <div class="container">
+      <div class="content-grid">
+        <!-- Left Column: Contact Info and Form -->
+        <div>
+          <div class="header">
+            <h1>CONTACT INFORMATION</h1>
+          </div>
+
+          <!-- Contact Details -->
+          <div class="contact-details">
+            <!-- Address -->
+            <div class="contact-item">
+              <div class="contact-item-icon">
+                <!-- SVG Icon Location -->
+                <svg
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"
+                  ></path>
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                  ></path>
+                </svg>
+              </div>
+              <div>
+                <p>34 Tran Dai Nghia, Hai Ba Trung, Hanoi</p>
+              </div>
+            </div>
+
+            <!-- Phone -->
+            <div class="contact-item">
+              <div class="contact-item-icon">
+                <!-- SVG Icon Phone -->
+                <svg
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                  ></path>
+                </svg>
+              </div>
+              <div>
+                <p><strong>0399065210</strong></p>
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="contact-item">
+              <div class="contact-item-icon">
+                <!-- SVG Icon Email -->
+                <svg
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  ></path>
+                </svg>
+              </div>
+              <div>
+                <p><strong>Furniture@gmail.com</strong></p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <form class="contact-form">
+            <h2>Contact Us</h2>
+
+            <!-- Name -->
+            <div class="form-group">
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Full Name"
+                required
+              />
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Email"
+                required
+              />
+            </div>
+
+            <!-- Message -->
+            <div class="form-group">
+              <textarea
+                id="content"
+                name="content"
+                placeholder="Your message..."
+              ></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="submit-button">Send Message</button>
+          </form>
+        </div>
+
+        <!-- Right Column: Google Map -->
+        <div class="map-container">
+          <!-- Google Map iframe -->
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3920.086307994451!2d106.70295257540209!3d10.748375659728271!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f4a56653139%3A0x7d6a5e173e1c64d3!2zS2h1IFZpbGxhIEUgMDgtMDktMTAgRCwgTmd1eeG7hW4gSOG7r3UgVGjhu40sIFBoxrDhu5tjIEtp4bq_biwgTmjDoCBCw6gsIFRow6BuaCBwaOG7kSBI4buZIENow60gTWluaA!5e0!3m2!1sen!2s-vn!4v1700684000000!5m2!1sen!2s-vn"
+            title="VFurniture European Interior Showroom in Nha Be"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section to display the footer -->
+    <div id="footer"></div>
+
+    <!-- Script to automatically load Footer.html -->
+    <script>
+      fetch("Footer.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("footer").innerHTML = data;
+        })
+        .catch((error) => console.error("Error loading footer:", error));
+    </script>
+  </body>
+</html>

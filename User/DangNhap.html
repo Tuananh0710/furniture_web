@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Log In</title>
+    <link rel="stylesheet" href="DangNhap.css" />
+  </head>
+  <body>
+    <div class="nav">
+      <nav class="navbar">
+        <div class="nav-box">
+          <div class="logo"><a href="#">Loom</a></div>
+          <div class="menu">
+            <ul>
+              <li><a href="Home.html">HOME</a></li>
+              <li><a href="#">SERVICE</a></li>
+              <li><a href="AboutUs.html">ABOUT US</a></li>
+              <li><a href="MyStore.html">CONTACT</a></li>
+            </ul>
+          </div>
+          <div class="sign">
+            <button class="bt one"><a href="#">Log In</a></button>
+            <button class="bt one">
+              <a href="DangKy.html">Register</a>
+            </button>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <form class="login-form">
+      <div class="form-heading">Login</div>
+      <div class="input-group">
+        <label class="label" for="email">Username</label>
+        <input
+          type="text"
+          placeholder="Username"
+          required=""
+          name="Username"
+          id="email"
+        />
+      </div>
+      <div class="input-group">
+        <label class="label" for="password">Password</label>
+        <input
+          type="password"
+          placeholder="Password"
+          id="pw"
+          required=""
+          name="password"
+        />
+      </div>
+
+      <div class="text">
+        <div class="remember">
+          <input type="checkbox" checked />
+          <p>Remember password</p>
+        </div>
+      </div>
+      <button class="btn" type="submit">Log In</button>
+      <div class="signup-link">
+        Don't have an account?<a href="DangKy.html">Register</a>
+      </div>
+    </form>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const loginForm = document.querySelector(".login-form");
+        const submitBtn = document.querySelector(".btn");
+
+        loginForm.addEventListener("submit", async function (e) {
+          e.preventDefault();
+
+          // Hiển thị trạng thái loading
+          submitBtn.disabled = true;
+          submitBtn.textContent = "Đang đăng nhập...";
+          loginForm.classList.add("loading");
+
+          // Lấy giá trị từ form
+          const email = document.getElementById("email").value;
+          const password = document.getElementById("pw").value;
+
+          // Tạo object dữ liệu để gửi đến API
+          const loginData = {
+            Username: email,
+            Password: password,
+          };
+
+          try {
+            // Gửi request đến API
+            const response = await fetch(
+              "http://localhost:3000/api/auth/login",
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(loginData),
+              }
+            );
+
+            const data = await response.json();
+
+            if (response.ok) {
+              // Đăng nhập thành công
+              alert(data.message);
+
+              // Lưu token và thông tin user
+              localStorage.setItem("token", data.token);
+              localStorage.setItem("user", JSON.stringify(data.user));
+              localStorage.setItem("role", data.user.Role);
+
+              if (data.user.Role === "Member") {
+                window.location.href = "Home.html";
+              } else if (data.user.Role === "Admin") {
+                window.location.href = "../Admin/MainScreen_Admin.html";
+              } else {
+                // Mặc định chuyển đến trang chủ nếu role không xác định
+                window.location.href = "Home.html";
+              }
+            } else {
+              // Đăng nhập thất bại
+              alert(
+                "Đăng nhập thất bại: " +
+                  (data.message || "Vui lòng kiểm tra lại thông tin")
+              );
+            }
+          } catch (error) {
+            console.error("Lỗi:", error);
+            alert("Có lỗi xảy ra khi đăng nhập. Vui lòng thử lại sau.");
+          } finally {
+            // Ẩn trạng thái loading
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Log In";
+            loginForm.classList.remove("loading");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

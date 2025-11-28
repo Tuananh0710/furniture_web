@@ -1,0 +1,128 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: #ffffff;
+}
+
+/* Thanh trên cùng */
+.top-bar {
+  background-color: #ffffff;
+  border-bottom: 3px solid #ffffff;
+  padding: 10px 60px 10px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+  color: #333;
+}
+
+.top-bar .left-links {
+  margin-left: 50px;
+}
+.top-bar .left-links p {
+  font-size: 40px;
+  font-weight: 600;
+}
+.right-info {
+  margin-bottom: 30px;
+  display: flex;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  margin-right: 25px;
+  gap: 40px;
+  padding-left: 80px;
+}
+
+.right-info .in4 {
+  margin-bottom: 0;
+  color: #0d47a1;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+  margin-right: 22px;
+}
+
+/* Thanh menu chính */
+.main-nav {
+  background-color: #2196f3;
+  display: flex;
+  align-items: center;
+  padding: 0 30px;
+  color: #fff;
+}
+
+.menu {
+  display: flex;
+  gap: 10px;
+  flex-grow: 1;
+  margin-left: 39px;
+}
+
+.menu a {
+  display: flex;
+  align-items: center;
+  padding: 12px 10px;
+  color: #fff;
+  font-size: 18px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.menu a:hover {
+  background-color: #1976d2;
+}
+
+.menu a i {
+  margin-right: 6px;
+}
+
+.right-section {
+  display: flex;
+  align-items: center;
+  background-color: #0d47a1;
+  margin-right: 50px;
+  border-radius: 20px;
+}
+
+.right-section a {
+  color: #fff;
+  text-decoration: none;
+  justify-content: center;
+  font-size: 19px;
+  width: 150px;
+  height: 50px;
+}
+
+.right-section .Log-out {
+  background-color: #1976d2;
+  padding: 10px 20px;
+  border-radius: 3px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.right-section .Log-out:hover {
+  background-color: #0d47a1;
+}

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Customer List</title>
+    <head>
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      />
+    </head>
+    <link rel="stylesheet" href="Orders_Admin.css" />
+  </head>
+  <body>
+    <!-- Section to display the header -->
+    <div id="header_admin"></div>
+    <!-- Script to automatically load header.html -->
+    <script>
+      fetch("Header_Admin.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("header_admin").innerHTML = data;
+        })
+        .catch((error) => console.error("Error loading header:", error));
+    </script>
+
+    <div class="container">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div class="filter-box">
+          <h4>Search</h4>
+          <input type="text" placeholder="By ID, name, or phone number" />
+        </div>
+
+        <div class="filter-box">
+          <h4>Date</h4>
+          <p>From:</p>
+          <input type="date" />
+          <p>To:</p>
+          <input type="date" />
+        </div>
+
+        <div class="filter-box">
+          <h4>Status</h4>
+          <ul>
+            <li><input type="Checkbox" />Pending</li>
+            <li><input type="Checkbox" />Shipping</li>
+            <li><input type="Checkbox" />Completed</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Table Order -->
+      <div class="main-content">
+        <div class="header">
+          <h2>Orders</h2>
+          <div class="buttons">
+            <button class="add"></button>
+          </div>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>OrderID</th>
+              <th>Customer Name</th>
+              <th>OrderDate</th>
+              <th>Phone</th>
+              <th>Address</th>
+              <th>Total</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="pointer">KH000004</td>
+              <td>Nguyen Huong Lan</td>
+              <td>11/11/2025</td>
+              <td>0399065210</td>
+              <td>34 Tran Dai Nghia, Hai Ba Trung, Ha Noi</td>
+              <td>4,750,000₫</td>
+              <td>Shipping</td>
+              <td class="icon">
+                <a href="Orders_Detail_Admin.html"
+                  ><i class="fa-solid fa-pen-to-square" id="Update"></i
+                ></a>
+                &nbsp;&nbsp;&nbsp;
+                <i class="fa-solid fa-trash" id="Delete"></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="pagination">
+          <button>&laquo;</button>
+          <button>1</button>
+          <button>2</button>
+          <button>3</button>
+          <button>&raquo;</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Form xem chi tiết đơn hàng -->
+    <div id="orderDetailModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Chi tiết đơn hàng</h2>
+          <span class="close">&times;</span>
+        </div>
+
+        <div class="order-detail-content">
+          <!-- Order Information -->
+          <div class="order-info">
+            <h3>Đơn hàng: <span id="modalOrderId">#DH001</span></h3>
+            <p>Ngày: 15/11/2024</p>
+          </div>
+
+          <div class="status">
+            <button>Shipping</button>
+          </div>
+
+          <div class="divider"></div>
+
+          <!-- Customer Information -->
+          <div class="info-section">
+            <div class="info-column">
+              <h4>THÔNG TIN KHÁCH HÀNG</h4>
+              <div class="info-item">
+                <strong>Khách hàng: Nguyễn Văn A</strong>
+                <p><i class="fa-solid fa-phone"></i> 0987654321</p>
+              </div>
+            </div>
+            <div class="info-column">
+              <h4>ĐỊA CHỈ GIAO HÀNG</h4>
+              <div class="info-item">
+                <strong>Người nhận: Nguyễn Văn A</strong>
+                <p><i class="fa-solid fa-phone"></i> 0987654321</p>
+                <p>
+                  <i class="fa-solid fa-location-dot"></i> 123 Đường ABC, Phường
+                  XYZ, Quận 1, TP.HCM
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <!-- Order Items -->
+          <div class="order-items">
+            <h4>SẢN PHẨM</h4>
+            <div class="items-list">
+              <div class="item-row header">
+                <p>Sản phẩm</p>
+                <span>Đơn giá</span>
+                <span>Số lượng</span>
+                <span>Thành tiền</span>
+              </div>
+
+              <div class="item-row">
+                <div class="product-info">
+                  <a href="#">
+                    <strong>Ghế sofa</strong>
+                    <p>Màu: Tím</p>
+                  </a>
+                </div>
+                <span>25.000.000₫</span>
+                <span>1</span>
+                <span>25.000.000₫</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <!-- Payment Summary -->
+          <div class="payment-summary">
+            <div class="summary-row">
+              <span>Tạm tính:</span>
+              <span>30.000.000₫</span>
+            </div>
+            <div class="summary-row">
+              <span>Phí vận chuyển:</span>
+              <span>0</span>
+            </div>
+            <div class="summary-row total">
+              <span><strong>Tổng cộng:</strong></span>
+              <span><strong>28.030.000₫</strong></span>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <!-- Action Buttons -->
+          <div class="action-buttons">
+            <button class="btn-close">Đóng</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="Orders_Admin.js"></script>
+  </body>
+</html>

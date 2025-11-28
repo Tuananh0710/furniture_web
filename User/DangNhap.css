@@ -1,0 +1,220 @@
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url(1.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.nav {
+  height: 140px;
+  width: 100%;
+}
+.navbar {
+  padding: 0 15px;
+}
+.nav-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 60px;
+}
+.logo a {
+  font-size: 50px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #58bc82;
+  margin-left: 40px;
+  text-decoration: none;
+}
+li {
+  list-style: none;
+  display: inline-block;
+}
+li a {
+  color: black;
+  font-size: 15px;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-right: 30px;
+  padding: 10px;
+  transition: 0.3s linear;
+  border-radius: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 20px;
+}
+li a:hover {
+  background-color: #58bc82;
+  color: rgb(255, 255, 255);
+}
+.sign .one {
+  background-color: #58bc82;
+}
+.sign .one a {
+  color: white;
+}
+
+/* --- Nút cơ bản --- */
+button {
+  transition: all 0.3s ease;
+  margin-left: 10px;
+  padding: 12px;
+  width: 100px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: bold;
+  background-color: #58bc82;
+  color: white;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+button a {
+  font-size: 15px;
+  font-weight: bold;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* --- HIỆU ỨNG HOVER MỚI CHO NÚT --- */
+button:hover {
+  background-color: #ffffff;
+  color: #58bc82;
+  transform: translateY(-4px);
+  box-shadow: 0px 8px 25px rgba(88, 188, 130, 0.6);
+}
+
+/* --- Nút có class .bt.one (Register, Login, ...) --- */
+.bt.one {
+  background-color: #58bc82;
+  color: #fff;
+  transition: all 0.3s ease;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+}
+.bt.one:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 8px 25px rgba(88, 188, 130, 0.6);
+}
+
+.login-form {
+  max-width: 320px;
+  padding: 40px;
+  width: 100%;
+  background: #ffffffe6;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px #0000001a;
+  animation: fadeIn 1.5s ease-out;
+}
+.form-heading {
+  text-align: center;
+  color: #333;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 25px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.input-group {
+  position: relative;
+  margin-bottom: 20px;
+}
+.input-group .label {
+  position: absolute;
+  top: -16px;
+  left: 10px;
+  font-size: 15px;
+  color: #58bc82;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  opacity: 0.7;
+}
+.input-group input {
+  width: 275px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #333;
+  border: 1px solid #000000;
+  border-radius: 10px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+.input-group .input:focus {
+  border-color: #58bc82;
+  box-shadow: 0 0 10px #58bc8266;
+}
+.input-group input:focus + .label {
+  top: -20px;
+
+  color: #58bc82;
+}
+
+.btn {
+  width: 99%;
+  padding: 9px;
+  background-color: #58bc82;
+  color: #fff;
+  font-size: 18px;
+  border: none;
+  border-radius: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-left: 0px;
+}
+.btn:hover {
+  background-color: #58bc82;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0px 8px 25px rgba(88, 188, 130, 0.6);
+}
+
+.signup-link {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 19px;
+  color: #333;
+}
+.signup-link a {
+  color: #58bc82;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+.signup-link a:hover {
+  color: rgb(19, 139, 19);
+}
+.text {
+  margin-top: -25px;
+}
+.text .remember {
+  text-align: left;
+  margin-right: 5px;
+  color: black;
+  font-size: 20px;
+  display: flex;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

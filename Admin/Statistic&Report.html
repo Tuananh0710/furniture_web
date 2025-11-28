@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Báo cáo & Thống kê</title>
+
+    <!-- Header CSS (local file you uploaded) -->
+    <link rel="stylesheet" href="/mnt/data/Header_Admin.css" />
+
+    <!-- Page CSS -->
+    <link rel="stylesheet" href="Statistic&Report.css" />
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <div id="header_admin"></div>
+    <script>
+      // try to load your header html (if exists)
+      fetch("Header_Admin.html")
+        .then((r) => (r.ok ? r.text() : ""))
+        .then((html) => {
+          if (html) document.getElementById("header_admin").innerHTML = html;
+        })
+        .catch(() => {});
+    </script>
+
+    <div class="report-wrapper">
+      <!-- ===== THANH BÊN ===== -->
+      <aside class="sidebar">
+        <h3 class="sb-title">Báo cáo</h3>
+
+        <div class="filter-box">
+          <h4>Tìm kiếm</h4>
+          <input id="qSearch" type="text" placeholder="Theo sản phẩm" />
+        </div>
+
+        <div class="filter-box">
+          <h4>Khoảng thời gian</h4>
+          <label>Từ</label>
+          <input id="dateFrom" type="date" />
+          <label>Đến</label>
+          <input id="dateTo" type="date" />
+        </div>
+
+        <div class="filter-box">
+          <h4>Khoảng thời gian nhanh</h4>
+          <div class="quick-buttons">
+            <button data-range="1" class="active">Hôm nay</button>
+            <button data-range="7">7 ngày qua</button>
+            <button data-range="30">30 ngày qua</button>
+            <button data-range="90">90 ngày qua</button>
+          </div>
+        </div>
+
+        <div class="nav-box">
+          <h3 class="sb-title">Mục</h3>
+          <nav>
+            <a class="nav-item active" data-target="kpi-section">Tổng quan</a>
+            <a class="nav-item" data-target="revenue-section">Doanh thu</a>
+            <a class="nav-item" data-target="orders-section">Đơn hàng</a>
+            <a class="nav-item" data-target="products-section"
+              >Sản phẩm hàng đầu</a
+            >
+            <a class="nav-item" data-target="customers-section"
+              >Khách hàng hàng đầu</a
+            >
+            <a class="nav-item" data-target="inventory-section"
+              >Cảnh báo tồn kho</a
+            >
+          </nav>
+        </div>
+
+        <div class="filter-box-small">
+          <h3 class="sb-title">Trạng Thái</h3>
+          <div class="filter-box-big">
+            <label
+              ><input
+                type="checkbox"
+                class="status-filter"
+                value="Completed"
+                checked
+              />
+              Đã hoàn thành</label
+            >
+            <br />
+            <label
+              ><input
+                type="checkbox"
+                class="status-filter"
+                value="Pending"
+                checked
+              />
+              Đang chờ xử lý</label
+            >
+            <br />
+            <label
+              ><input
+                type="checkbox"
+                class="status-filter"
+                value="Shipped"
+                checked
+              />
+              Đã giao hàng</label
+            >
+          </div>
+        </div>
+
+        <div class="filter-actions">
+          <button id="btnApply" class="btn primary"></button>
+          <button id="btnReset" class="btn primary"></button>
+        </div>
+      </aside>
+
+      <!-- ===== NỘI DUNG CHÍNH ===== -->
+      <main class="page">
+        <header class="page-header">
+          <h1>Báo cáo & Thống kê</h1>
+          <div class="page-controls">
+            <button id="exportCSV" class="btn-1">Xuất CSV</button>
+            <button id="downloadPDF" class="btn-1">Tải PDF</button>
+          </div>
+        </header>
+
+        <!-- Hàng KPI -->
+        <section id="kpi-section" class="kpi-row">
+          <div class="kpi card" id="kpi-revenue">
+            <div>
+              <div class="label">Doanh thu (khoảng thời gian)</div>
+              <div class="value" id="kpiRevVal">₫ 0</div>
+              <div class="small" id="kpiRevTrend">xu hướng</div>
+            </div>
+            <div class="icon">💰</div>
+          </div>
+
+          <div class="kpi card" id="kpi-orders">
+            <div>
+              <div class="label">Đơn hàng</div>
+              <div class="value" id="kpiOrdersVal">0</div>
+              <div class="small" id="kpiOrdersTrend">xu hướng</div>
+            </div>
+            <div class="icon">🧾</div>
+          </div>
+
+          <div class="kpi card" id="kpi-customers">
+            <div>
+              <div class="label">Khách hàng mới</div>
+              <div class="value" id="kpiCustVal">0</div>
+              <div class="small" id="kpiCustTrend">xu hướng</div>
+            </div>
+            <div class="icon">👥</div>
+          </div>
+
+          <div class="kpi card" id="kpi-lowstock">
+            <div>
+              <div class="label">Sản phẩm tồn kho thấp</div>
+              <div class="value" id="kpiStockVal">0</div>
+              <div class="small" id="kpiStockTrend">kiểm tra đặt hàng lại</div>
+            </div>
+            <div class="icon">📦</div>
+          </div>
+        </section>
+
+        <!-- Biểu đồ -->
+        <section class="grid-2">
+          <div id="revenue-section" class="panel card">
+            <h3>Doanh thu theo thời gian</h3>
+            <canvas id="chartRevenue"></canvas>
+          </div>
+
+          <div id="orders-section" class="panel card">
+            <h3>Đơn hàng theo ngày</h3>
+            <canvas id="chartOrders"></canvas>
+          </div>
+        </section>
+
+        <section class="grid-2">
+          <div id="products-section" class="panel card">
+            <h3>Doanh thu theo danh mục</h3>
+            <canvas id="chartCategory"></canvas>
+          </div>
+
+          <div id="customers-section" class="panel card">
+            <h3>Khách hàng hàng đầu</h3>
+            <div id="topCustomers" class="list"></div>
+          </div>
+        </section>
+
+        <section id="inventory-section" class="panel card">
+          <h3>Cảnh báo tồn kho</h3>
+          <div id="inventoryList" class="list"></div>
+        </section>
+
+        <section class="panel card order">
+          <h3>Đơn hàng gần đây</h3>
+          <table id="recentOrders" class="table">
+            <thead>
+              <tr>
+                <th>Đơn hàng</th>
+                <th>Khách hàng</th>
+                <th>Ngày</th>
+                <th>Tổng tiền</th>
+                <th>Trạng thái</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </section>
+      </main>
+    </div>
+
+    <script src="Statistic&Report.js"></script>
+  </body>
+</html>

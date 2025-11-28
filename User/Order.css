@@ -1,0 +1,145 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: #222;
+  background-color: #fff;
+  padding: 40px 1px;
+}
+
+/* ----- BREADCRUMB ----- */
+.breadcrumb {
+  color: #000000;
+  font-size: 15px;
+  margin-bottom: 25px;
+  margin-top: 12px;
+}
+
+.breadcrumb a {
+  text-decoration: none;
+  color: #000000;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+  color: #58bc82;
+}
+
+/* ----- LAYOUT ----- */
+.container {
+  display: flex;
+  gap: 60px;
+  margin-left: 120px;
+  margin-bottom: 120px;
+}
+
+/* CỘT TRÁI */
+.sidebar {
+  width: 160px;
+  margin-top: 30px;
+  margin-left: 140px;
+}
+
+.sidebar h2 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.sidebar p {
+  font-size: 15px;
+  margin-bottom: 15px;
+}
+
+.sidebar p span {
+  color: #000000;
+  font-weight: 600;
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar ul li {
+  margin-bottom: 12px;
+}
+
+.sidebar ul li a {
+  color: #000000;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.sidebar ul li a:hover {
+  text-decoration: underline;
+  color: #58bc82;
+}
+
+.sidebar-menu-li {
+  width: 150px;
+  height: 50px;
+  padding-top: 13px;
+  margin-left: -5px;
+  border: none;
+  background-color: #58bc82;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 170px;
+  margin-bottom: -40px;
+}
+.sidebar div a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+}
+/* =====CỘT PHẢI===== */
+.content {
+  flex: 1;
+  margin-top: 30px;
+  margin-left: 40px;
+  margin-right: 222px;
+}
+
+.content h2 {
+  font-size: 20px;
+  text-transform: uppercase;
+  margin-bottom: 25px;
+}
+
+/* ----- BẢNG ĐƠN HÀNG ----- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+  font-size: 15px;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #146b2a;
+  color: white;
+  font-weight: 600;
+  text-align: center;
+}
+
+td {
+  text-align: center;
+  color: #000000;
+}
+td a {
+  color: black;
+}
+td a:hover {
+  color: #4cad64;
+}
