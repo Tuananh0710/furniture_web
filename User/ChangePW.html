@@ -59,7 +59,7 @@
               <label for="fullName">Old passwords*</label>
               <input
                 type="password"
-                id="password"
+                id="oldPassword"
                 name="password"
                 required=""
               />
@@ -69,7 +69,7 @@
               <label for="Password">New password*</label>
               <input
                 type="password"
-                id="New password"
+                id="newPassword"
                 name="New password"
                 required
               />
@@ -79,7 +79,7 @@
               <label for="phone">Reconfirm password</label>
               <input
                 type="password"
-                id="password"
+                id="confirmPassword"
                 name="password"
                 required=""
               />
@@ -93,7 +93,6 @@
 
     <!-- Section to display the footer -->
     <div id="footer"></div>
-
     <!-- Script to automatically load footer.html -->
     <script>
       fetch("footer.html")
@@ -103,5 +102,6 @@
         })
         .catch((error) => console.error("Error loading footer:", error));
     </script>
+    <script src="ChangePW.js"></script>
   </body>
 </html>

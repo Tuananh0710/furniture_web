@@ -93,8 +93,8 @@ function displayUserInfo(userData) {
             <p><b>Email:</b> ${userData.Email || "Chưa cập nhật"}</p>
             <p><b>Phone:</b> ${userData.Phone || "Chưa cập nhật"}</p>
             <p><b>Address:</b> ${userData.Address || "Chưa cập nhật"}</p>
-            <p><b>Username:</b> ${userData.Username || "Chưa cập nhật"}</p>
-            <p><b>Role:</b> ${userData.Role || "Member"}</p>
+  
+   
         `;
   }
 }
