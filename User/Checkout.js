@@ -136,7 +136,6 @@ async function placeOrder(event) {
     // 3. Xử lý phản hồi
     if (response.ok) {
       const result = await response.json();
-      alert("Place order completed! ");
       window.location.href = "Completed.html";
     } else {
       const errorData = await response.json();

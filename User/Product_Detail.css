@@ -96,14 +96,6 @@ body {
   margin: 20px 0;
 }
 
-.old-price {
-  text-decoration: line-through;
-  color: #939393;
-  font-size: 20px;
-  margin-left: 10px;
-  font-weight: 600;
-}
-
 .current-price {
   font-size: 32px;
   font-weight: bold;
