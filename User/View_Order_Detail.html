@@ -17,8 +17,9 @@
 
     <!-- Breadcrumb -->
     <div class="breadcrumb">
-      <a href="Home.html">Home</a> &gt;<a href="Order.html">Your Orders</a> &gt;
-      <span>View Order Detail</span>
+      <a href="Home.html">Home</a> &gt;
+      <a href="Order.html">Your Orders</a> &gt;
+      <span id="order-breadcrumb">View Order Detail</span>
     </div>
 
     <!-- Shopping Cart -->
@@ -26,19 +27,19 @@
       <button>
         <a href="Order.html" class="back"> 👈 Back </a>
       </button>
-      <h1>View Order Details</h1>
+      <h1 id="order-detail-title">View Order Details</h1>
 
       <table class="cart-table">
         <thead>
           <tr>
             <th>Product</th>
-            <th>Price</th>
+            <th>UnitPrice</th>
             <th>Quantity</th>
             <th>Total</th>
           </tr>
         </thead>
 
-        <tbody>
+        <tbody id="order-items-body">
           <tr>
             <td class="product-info">
               <img src="LivingSpace.webp" alt="Work Desk" />
@@ -60,21 +61,21 @@
             <!--Nhớ thay đổi số lượng mua max = số lượng tồn kho của sản phẩm-->
             <td>3,600,000₫</td>
           </tr>
-
-          <tr>
-            <td class="product-info">
-              <img src="1.jpg" alt="Dining Chair" />
-              <span>Bayside Furnishing Dining Chair</span>
-            </td>
-            <td>1,150,000₫</td>
-            <td>1</td>
-            <td>1,150,000₫</td>
-          </tr>
         </tbody>
       </table>
 
+      <div class="Shippingfee">
+        <strong
+          >ShippingFee:&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <span class="fee" id="shipping"> </span>
+        </strong>
+      </div>
       <div class="cart-summary">
-        <span class="total">Total: 4,750,000₫</span>
+        <strong
+          >Total:&nbsp;&nbsp;&nbsp;&nbsp;<span class="total" id="final-total">
+          </span
+        ></strong>
       </div>
     </div>
 
@@ -85,5 +86,6 @@
         .then((res) => res.text())
         .then((data) => (document.getElementById("footer").innerHTML = data));
     </script>
+    <script src="View_order_detail.js"></script>
   </body>
 </html>

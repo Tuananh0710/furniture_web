@@ -143,3 +143,49 @@ td a {
 td a:hover {
   color: #4cad64;
 }
+
+/* Thêm vào file Order.css */
+.status {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.payment-paid,
+.payment-completed {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.payment-pending {
+  background-color: #fff3e0;
+  color: #ef6c00;
+}
+
+.payment-failed {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
+.shipping-delivered,
+.shipping-completed {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.shipping-processing,
+.shipping-shipped {
+  background-color: #e3f2fd;
+  color: #1565c0;
+}
+
+.shipping-pending {
+  background-color: #fff3e0;
+  color: #ef6c00;
+}
+
+.shipping-cancelled {
+  background-color: #f5f5f5;
+  color: #757575;
+}

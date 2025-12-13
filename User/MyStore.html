@@ -183,5 +183,23 @@
         })
         .catch((error) => console.error("Error loading footer:", error));
     </script>
+
+    <script>
+      const contactForm = document.querySelector(".contact-form");
+      const submitButton = document.querySelector(".submit-button");
+
+      contactForm.addEventListener("submit", function (event) {
+        // 1. Ngăn form gửi đi theo cách truyền thống (ngăn tải lại trang)
+        event.preventDefault();
+
+        document.getElementById("name").value = "";
+        document.getElementById("email").value = "";
+        document.getElementById("content").value = "";
+
+        alert("Sent!");
+
+        submitButton.disabled = true;
+      });
+    </script>
   </body>
 </html>

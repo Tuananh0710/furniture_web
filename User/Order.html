@@ -47,23 +47,16 @@
         <h2>Your Orders</h2>
 
         <table>
-          <tr>
-            <th>OrderID</th>
-            <th>Date</th>
-            <th>Address</th>
-            <th>Order Value</th>
-            <th>Payment Status</th>
-            <th>Shipping Status</th>
-          </tr>
-
-          <tr>
-            <td><a href="View_Order_Detail.html"></a></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
+          <thead>
+            <tr>
+              <th>OrderID</th>
+              <th>Date</th>
+              <th>Address</th>
+              <th>Order Value</th>
+              <th>Payment Status</th>
+              <th>Shipping Status</th>
+            </tr>
+          </thead>
         </table>
       </div>
     </div>
@@ -80,5 +73,7 @@
         })
         .catch((error) => console.error("Error loading footer:", error));
     </script>
+
+    <script src="OrderFrontEnd.js"></script>
   </body>
 </html>

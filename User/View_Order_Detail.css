@@ -100,24 +100,26 @@ h1 {
   margin-top: 5px;
   font-size: 13px;
 }
+
 .cart-summary {
-  display: flex;
+  display: block;
   align-items: right;
-  margin-top: 25px;
-  padding-top: 20px;
-  padding-bottom: 10px;
-  padding-left: 880px;
+  text-align: right;
+  margin-top: 2px;
 }
-
-.cart-summary p {
-  font-size: 18px;
-  font-weight: 600;
-}
-
-.cart-summary .total {
+.cart-summary .total,
+strong {
   color: #058b4f;
-  font-size: 22px;
+  font-size: 23px;
   font-weight: 700;
+}
+
+.Shippingfee strong {
+  display: block;
+  font-size: 20px;
+  text-align: right;
+  align-items: right;
+  margin-top: 60px;
 }
 
 /* Continue Shopping Button */
