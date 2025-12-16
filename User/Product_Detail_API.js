@@ -35,7 +35,12 @@ async function fetchProductDetail() {
 }
 
 // 3. Hàm cập nhật nội dung HTML
+// 3. Hàm cập nhật nội dung HTML
 function updateProductHTML(product) {
+  console.log("🔍 Product data received:", product);
+  console.log("🖼️ ImageURLs type:", typeof product.ImageURLs);
+  console.log("🖼️ ImageURLs value:", product.ImageURLs);
+
   const formatCurrency = (amount) => {
     const number = parseFloat(String(amount).replace(/,/g, ""));
     if (isNaN(number)) return String(amount);
@@ -87,33 +92,94 @@ function updateProductHTML(product) {
   if (specsContainer) {
     specsContainer.innerHTML = specsHTML;
   }
-  // --- Cập nhật Hình ảnh (Images) --- fix
+
+  // --- SỬA LẠI PHẦN NÀY: Cập nhật Hình ảnh (Images) ---
   const mainImage = document.getElementById("mainImage");
   const thumbnailContainer = document.querySelector(".thumbnail-container");
 
-  if (product.ImageURLs && Array.isArray(product.ImageURLs)) {
-    const baseUrl = "http://localhost:3000/";
-    const firstImageUrl =
-      product.ImageURLs.length > 0
-        ? baseUrl + product.ImageURLs[0]
-        : "placeholder.jpg";
+  console.log("🔄 Xử lý ảnh sản phẩm...");
+
+  // Tạo mảng chứa URLs ảnh
+  let imageUrls = [];
+
+  try {
+    // Xử lý ImageURLs có thể là string JSON hoặc array
+    if (product.ImageURLs) {
+      console.log("📝 Raw ImageURLs:", product.ImageURLs);
+
+      if (typeof product.ImageURLs === "string") {
+        // Trường hợp 1: Là JSON string
+        console.log("🔄 Đang parse JSON string...");
+        imageUrls = JSON.parse(product.ImageURLs);
+        console.log("✅ Đã parse thành array:", imageUrls);
+      } else if (Array.isArray(product.ImageURLs)) {
+        // Trường hợp 2: Đã là array
+        console.log("✅ ImageURLs đã là array");
+        imageUrls = product.ImageURLs;
+      }
+    }
+  } catch (error) {
+    console.error("❌ Lỗi khi parse ImageURLs:", error);
+    console.log("📝 ImageURLs gốc:", product.ImageURLs);
+    imageUrls = [];
+  }
+
+  console.log("🖼️ Final imageUrls array:", imageUrls);
+
+  const baseUrl = "";
+
+  if (imageUrls && imageUrls.length > 0) {
+    const firstImageUrl = baseUrl + imageUrls[0];
+    console.log("🎯 Main image URL:", firstImageUrl);
+
     if (mainImage) {
       mainImage.src = firstImageUrl;
+      // Thêm fallback cho lỗi tải ảnh
+      mainImage.onerror = function () {
+        console.error("⚠️ Không thể tải ảnh chính:", firstImageUrl);
+        this.src = "placeholder.jpg";
+      };
     }
+
     // Cập nhật Thumbnail
     if (thumbnailContainer) {
       thumbnailContainer.innerHTML = "";
-      product.ImageURLs.forEach((url, index) => {
+
+      imageUrls.forEach((url, index) => {
         const img = document.createElement("img");
-        img.src = baseUrl + url;
+        const fullUrl = baseUrl + url;
+
+        img.src = fullUrl;
         img.alt = `thumb${index + 1}`;
+        img.title = `Hình ${index + 1}`;
+
+        // Thêm fallback cho thumbnail
+        img.onerror = function () {
+          console.error("⚠️ Không thể tải thumbnail:", fullUrl);
+          this.src = "placeholder.jpg";
+        };
+
         img.onclick = function () {
+          console.log("🖱️ Clicked thumbnail:", fullUrl);
           changeImage(this);
-        }; // Hàm chuyển ảnh
+        };
+
         thumbnailContainer.appendChild(img);
       });
+
+      console.log(`✅ Đã thêm ${imageUrls.length} thumbnail`);
+    }
+  } else {
+    console.log("📭 Không có ảnh, sử dụng placeholder");
+    // Nếu không có ảnh, dùng placeholder
+    if (mainImage) {
+      mainImage.src = "placeholder.jpg";
+    }
+    if (thumbnailContainer) {
+      thumbnailContainer.innerHTML = "<p>No images available</p>";
     }
   }
+
   // --- Cập nhật Mô tả (Description) ---
   const descriptionPanel = document.getElementById("description");
   if (descriptionPanel) {
@@ -121,6 +187,7 @@ function updateProductHTML(product) {
       product.Description || "Product information is being updated."
     }</p>`;
   }
+
   // Kiểm tra tồn kho
   const addToCartBtn = document.querySelector(".add-to-cart");
   if (product.StockQuantity !== undefined && product.StockQuantity <= 0) {
@@ -129,6 +196,8 @@ function updateProductHTML(product) {
       addToCartBtn.disabled = true;
     }
   }
+
+  console.log("✅ Đã cập nhật HTML thành công");
 }
 // 4. Hàm hỗ trợ chuyển ảnh (giữ nguyên hoặc bổ sung nếu chưa có)
 function changeImage(imgElement) {

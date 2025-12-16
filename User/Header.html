@@ -19,9 +19,9 @@
       <div class="top-bar">
         <!-- Ô tìm kiếm -->
         <div class="search-box">
-          <input type="text" placeholder="Search..." />
+          <input type="text" id="searchInput" placeholder="Search..." />
           <button>
-            <a href="Products.html"
+            <a href="Products.html" id="searchButton"
               ><i class="fa-solid fa-magnifying-glass"></i
             ></a>
           </button>
@@ -54,39 +54,42 @@
         <a href="Home.html" class="brand">New</a>
         <ul class="nav-list">
           <li class="nav-item has-submenu">
-            <a href="Products.html" class="nav-link">Living room</a>
+            <a href="Products.html?category=1" class="nav-link">Living room</a>
             <ul class="submenu">
-              <li><a href="Products.html">Sofa</a></li>
-              <li><a href="Products.html">BeanBag Chair</a></li>
-              <li><a href="Products.html">TV Sheft</a></li>
+              <li><a href="Products.html?subcategory=1">Sofa</a></li>
+              <li><a href="Products.html?subcategory=6">BeanBag Chair</a></li>
+              <li><a href="Products.html?subcategory=12">TV Sheft</a></li>
             </ul>
           </li>
           <li class="nav-item has-submenu">
-            <a href="Products.html" class="nav-link">Bed room</a>
+            <a href="Products.html?category=2" class="nav-link">Bed room</a>
             <ul class="submenu">
-              <li><a href="Products.html">Bed</a></li>
-              <li><a href="Products.html">Nightstands</a></li>
-              <li><a href="Products.html">Dresser</a></li>
+              <li><a href="Products.html?subcategory=4">Bed</a></li>
+              <li><a href="Products.html?subcategory=3">Nightstands</a></li>
+              <li><a href="Products.html?subcategory=2">Dresser</a></li>
             </ul>
           </li>
           <li class="nav-item has-submenu">
-            <a href="Products.html" class="nav-link">Dining & Kitchen</a>
+            <a href="Products.html?category=3" class="nav-link"
+              >Dining & Kitchen</a
+            >
             <ul class="submenu">
-              <li><a href="Products.html">Dining tables</a></li>
-              <li><a href="Products.html">Dining chair</a></li>
-              <li><a href="Products.html">Bar & Kitchen</a></li>
+              <li><a href="Products.html?subcategory=7">Dining tables</a></li>
+              <li><a href="Products.html?subcategory=8">Dining chair</a></li>
+              <li><a href="Products.html?subcategory=9">Bar & Kitchen</a></li>
             </ul>
           </li>
           <li class="nav-item has-submenu">
-            <a href="Products.html" class="nav-link">Office Room</a>
+            <a href="Products.html?category=4" class="nav-link">Office Room</a>
             <ul class="submenu">
-              <li><a href="Products.html">Bookcase</a></li>
-              <li><a href="Products.html">Desks</a></li>
-              <li><a href="Products.html">Desks Chairs</a></li>
+              <li><a href="Products.html?subcategory=5">Bookcase</a></li>
+              <li><a href="Products.html?subcategory=10">Desks</a></li>
+              <li><a href="Products.html?subcategory=11">Desks Chairs</a></li>
             </ul>
           </li>
         </ul>
       </nav>
+      <script src="Header_Search.js"></script>
     </header>
   </body>
 </html>

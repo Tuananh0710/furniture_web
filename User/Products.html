@@ -15,17 +15,15 @@
         .then((data) => (document.getElementById("header").innerHTML = data));
     </script>
 
-    <div class="breadcrumb"><a href="#">Home</a> &gt; All Products</div>
+    <div class="breadcrumb" id="breadcrumb"></div>
 
     <div class="container">
       <!-- Sidebar -->
       <div class="sidebar">
         <div class="filter-box">
           <div class="filter-title">CATEGORIES</div>
-          <ul>
-            <li class="Category">Dining Tables</li>
-            <li class="Category">Dining Chairs</li>
-            <li class="Category">Bar & Kitchen</li>
+          <ul id="category-list">
+            <!-- Categories sẽ được tải động -->
           </ul>
         </div>
 
@@ -62,23 +60,11 @@
       <!-- Product Section -->
       <div class="products">
         <div class="products-header">
-          <h2>All Products</h2>
+          <h2 id="page-title">Living room</h2>
         </div>
 
-        <div class="product-grid">
-          <!-- Product Item -->
-          <a href="Product_Detail.html">
-            <div class="product-card">
-              <img src="LivingSpace.webp" alt="Product 1" />
-              <div class="product-info">
-                <div class="product-name">
-                  Margaux Beige 36-inch Vanity Cabinet
-                </div>
-                <div class="price">4,500,000₫</div>
-                <div class="old-price">5,900,000₫</div>
-              </div>
-            </div>
-          </a>
+        <div class="product-grid" id="product-grid">
+          <!-- Product sẽ được tải động bằng JavaScript -->
         </div>
       </div>
     </div>
@@ -91,6 +77,6 @@
         .then((data) => (document.getElementById("footer").innerHTML = data));
     </script>
 
-    <script src="Products.js" defer></script>
+    <script src="Products_Category.js"></script>
   </body>
 </html>
