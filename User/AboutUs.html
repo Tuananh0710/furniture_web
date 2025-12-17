@@ -1,13 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About VFurniture</title>
-    <link rel="stylesheet" href="AboutUs.css" />
-  </head>
-
-  <body>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - LOOM</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4a7c59',
+                        'primary-foreground': '#ffffff',
+                        background: '#f5f7f5',
+                        foreground: '#1a2e1a',
+                        muted: '#e8ede8',
+                        'muted-foreground': '#5a6b5a',
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body class="font-sans bg-background text-foreground">
     <!-- Header -->
     <div id="header"></div>
 
@@ -17,137 +37,148 @@
         .then((data) => (document.getElementById("header").innerHTML = data));
     </script>
 
-    <!-- Breadcrumb -->
-    <section class="breadcrumb">
-      <a href="#">Home</a> &gt; <span>About Us</span>
-    </section>
+    <main>
+        <!-- Hero Section -->
+        <section class="relative min-h-[70vh] flex items-center justify-center bg-background px-4 py-20">
+            <div class="max-w-5xl mx-auto text-center">
+                <h1 class="font-serif text-6xl sm:text-5xl lg:text-5xl font-normal mb-8 text-foreground">
+                    Weaving comfort into every thread
+                </h1>
+                <p class="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
+                    At LOOM, we believe that furniture is more than objects—it's the fabric of life, woven together with
+                    craftsmanship, sustainability, and timeless design.
+                </p>
+            </div>
+        </section>
 
-    <!-- Introduction -->
-    <section class="intro">
-      <h1>Introduce about Loom</h1>
-      <p>
-        We were founded with a desire to enhance the quality of living spaces
-        for Vietnamese families and to elevate awareness of Vietnamese-made
-        products with export-level quality. <b>VFurniture</b> is passionate and
-        dedicated to bringing the finest indoor and outdoor furniture products
-        that are safe, non-toxic, and of exceptional quality to every Vietnamese
-        home.
-      </p>
-    </section>
+        <!-- Our Story Section -->
+        <section class="py-20 bg-muted">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-normal mb-6 text-foreground">Our Story</h2>
+                        <div class="space-y-4 text-muted-foreground text-lg leading-relaxed">
+                            <p>
+                                Founded in 2010, LOOM began with a simple vision: to create furniture that brings warmth, elegance, and
+                                meaning to every home. Our name reflects our philosophy—each piece is carefully woven together,
+                                combining artisan craftsmanship with sustainable materials.
+                            </p>
+                            <p>
+                                From our workshop in Portland, Oregon, we've grown into a trusted name in contemporary furniture design.
+                                Every piece tells a story of dedication, from the sustainably-sourced wood to the hands that shape it.
+                            </p>
+                            <p>
+                                Today, LOOM continues to honor traditional woodworking techniques while embracing modern design
+                                sensibilities, creating furniture that stands the test of time both in durability and style.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="relative h-[500px] md:h-[600px]">
+                        <img
+                            src="nmaigogo.jpg?height=600&width=600"
+                            alt="Artisan crafting furniture"
+                            class="w-full h-full object-cover rounded-lg"
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <!-- About Us -->
-    <section class="about">
-      <h2>Who We Are</h2>
-      <p>
-        VFurniture specializes in exporting high-end furniture lines to markets
-        in Europe and the United States. As the exclusive representative of over
-        10 premium furniture brands, we aim to satisfy those who appreciate
-        elegant and distinctive lifestyles.
-      </p>
-      <p>
-        <img src="2.jpg" alt="Furniture" style="width: 100vh; height: 350px" />
-      </p>
-      <p>
-        Visiting our showroom, you can explore and experience luxurious
-        European-style interior design spaces with premium <b>Indoor</b> and
-        <b>Outdoor</b> products from renowned brands such as MODLOFT, ARTICLE,
-        BOMBAY, and SUOFEIYA.
-      </p>
-      <p>
-        VFurniture guarantees that all our products meet
-        <b>Nontoxic</b> standards (lead-free paints) — safe for both the
-        environment and human health — and are certified by the
-        <b>FSC – Forest Stewardship Council</b>.
-      </p>
-      <p>
-        Moreover, VFurniture is also a trusted provider of interior design and
-        construction services in Nha Be. With years of experience in the
-        industry, we bring customers modern, convenient, and aesthetic living
-        and working spaces that reflect their unique style.
-      </p>
-    </section>
+        <!-- Our Values Section -->
+        <section class="py-20 bg-background">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="font-serif text-4xl sm:text-5xl font-normal mb-4 text-foreground">What We Stand For</h2>
+                    <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
+                        Our values guide every decision we make, from design to delivery.
+                    </p>
+                </div>
 
-    <!-- Why Choose Us -->
-    <section class="why-choose">
-      <h2>Why Choose Us</h2>
-      <p>
-        <img src="3.png" alt="Furniture" style="width: 100vh; height: 300px" />
-      </p>
-      <p>
-        At <b>VFurniture</b>, we ensure that every design embodies European
-        excellence. <br />
-        <i>"Classy, elegant, multifunctional, and modern"</i> are what we are
-        proud to deliver to our valued customers.
-      </p>
+                <div class="grid md:grid-cols-3 gap-12">
+                    <div class="text-center">
+                        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-6">
+                            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-serif text-2xl font-normal mb-3 text-foreground">Sustainable</h3>
+                        <p class="text-muted-foreground leading-relaxed">
+                            We source materials responsibly, ensuring every piece minimizes environmental impact while maximizing beauty and longevity.
+                        </p>
+                    </div>
 
-      <h3>1. Quality & Service</h3>
-      <p>
-        Our products are guaranteed to be non-toxic, safe for health, and
-        eco-friendly.
-        <br />
-        Every product undergoes strict quality control processes to ensure that
-        we only deliver the best to our customers.
-      </p>
-      <p>
-        <br />
-        <img src="4.png" alt="Furniture" style="width: 100vh; height: 300px" />
-      </p>
-      <p>
-        Customer trust and satisfaction are our top priorities. In addition to
-        offering high-quality products at reasonable prices, we strive to
-        provide excellent shopping experiences through customer service,
-        promotions, and after-sales care.
-      </p>
+                    <div class="text-center">
+                        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-6">
+                            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-serif text-2xl font-normal mb-3 text-foreground">Crafted with Care</h3>
+                        <p class="text-muted-foreground leading-relaxed">
+                            Our artisans pour their passion into every detail, creating furniture that carries the warmth of human touch and dedication.
+                        </p>
+                    </div>
 
-      <h3>2. Vision & Mission</h3>
-      <p>
-        VFurniture aims to become a leading brand representing European-standard
-        interior design in Vietnam — offering beautiful, high-quality products
-        at fair prices with refined aesthetics.
-      </p>
-      <p>
-        We also seek to contribute to the community — not only by enhancing
-        living spaces but also by promoting social and environmental values.
-      </p>
+                    <div class="text-center">
+                        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-6">
+                            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-serif text-2xl font-normal mb-3 text-foreground">Timeless Design</h3>
+                        <p class="text-muted-foreground leading-relaxed">
+                            We design pieces that transcend trends, combining classic elegance with modern functionality for homes that evolve with you.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-      <h3>3. Company Culture</h3>
-      <ul>
-        <li>Customer-centric mindset</li>
-        <li>Employees as the foundation for growth</li>
-        <li>Long-term partnership and collaboration</li>
-        <li>Mutual benefit and sustainable goals</li>
-        <li>Respect for nature and the environment</li>
-      </ul>
-      <p>
-        <br />
-        <img src="5.png" alt="Furniture" style="width: 100vh; height: 300px" />
-      </p>
-    </section>
-
-    <!-- Contact / Footer Info -->
-    <section class="contact-info">
-      <h2>VFURNITURE - EUROPEAN INTERIOR DESIGN</h2>
-      <p>
-        Visit our showroom today to experience premium European furniture that
-        enhances the luxury and elegance of your living space!
-      </p>
-
-      <div class="info">
-        <p>
-          <b>Address:</b> Villa Area E1-8-9-10, Zeitgeist Urban Area, Nguyen Huu
-          Tho Street, Phuoc Kien Commune, Nha Be District, Ho Chi Minh City
-        </p>
-        <p><b>Email:</b> vfurniturevn@gmail.com</p>
-        <p><b>Phone:</b> 0947.111.111</p>
-      </div>
-    </section>
+        <!-- Craftsmanship Section -->
+        <section class="py-20 bg-muted">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="relative h-[500px] md:h-[600px]">
+                        <img
+                            src="nmai.png?height=600&width=600"
+                            alt="Craftsmanship detail"
+                            class="w-full h-full object-cover rounded-lg"
+                        />
+                    </div>
+                    <div>
+                        <h2 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-normal mb-6 text-foreground">
+                            Master Craftsmanship
+                        </h2>
+                        <div class="space-y-4 text-muted-foreground text-lg leading-relaxed mb-8">
+                            <p>
+                                Each LOOM piece is the result of meticulous attention to detail and years of refined expertise. Our
+                                master craftspeople bring decades of experience, blending traditional joinery techniques with
+                                contemporary precision.
+                            </p>
+                            <p>
+                                We believe in the beauty of imperfection—the subtle variations in wood grain, the hand-finished edges,
+                                and the authentic character that makes each piece uniquely yours.
+                            </p>
+                        </div>
+                        <a href="#" class="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-md hover:bg-primary/90 transition-colors">
+                            Explore Our Collection
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <!-- Footer -->
     <div id="footer"></div>
+
     <script>
-      fetch("Footer.html")
+      fetch("footer.html")
         .then((res) => res.text())
         .then((data) => (document.getElementById("footer").innerHTML = data));
     </script>
-  </body>
+</body>
 </html>
