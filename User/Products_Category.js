@@ -8,11 +8,6 @@ function getUrlParameter(name) {
     : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
-// Lấy category hoặc subcategory từ URL
-const categoryId = getUrlParameter("category");
-const subcategoryId = getUrlParameter("subcategory");
-
-// API URLs
 const API_BASE = "http://localhost:3000/api";
 
 const CATEGORY_MAP = {
@@ -38,39 +33,37 @@ const PARENT_CATEGORY_MAP = {
 };
 
 async function loadProducts() {
-  let apiUrl = "";
+  const categoryId = getUrlParameter("category");
+  const subcategoryId = getUrlParameter("subcategory");
+  const searchQuery = getUrlParameter("q");
+  if (searchQuery) {
+    await loadCategories();
+    return;
+  }
+  let apiUrl = `${API_BASE}/products`;
   let pageTitle = "All Products";
   let breadcrumbText = '<a href="Home.html">Home</a> &gt; All Products';
 
-  console.log("ParentCategory ID:", categoryId);
-  console.log("categoryID: ", subcategoryId);
-
-  // Xác định API endpoint dựa trên tham số
   if (subcategoryId) {
-    // Lấy sản phẩm theo categoryID (subcategory)
     apiUrl = `${API_BASE}/categories/category/${subcategoryId}`;
     pageTitle = CATEGORY_MAP[subcategoryId] || "Category";
-    breadcrumbText = `<a href="Home.html">Home</a> &gt; ${pageTitle}`;
+    breadcrumbText = `<a href="Home.html">Home</a> &gt; <a href="Products.html?category=${getParentCategoryId(
+      subcategoryId
+    )}">${getParentCategoryName(subcategoryId)}</a> &gt; ${pageTitle}`;
   } else if (categoryId) {
-    // Lấy sản phẩm theo parentCategoryID
     apiUrl = `${API_BASE}/categories/parent-category/${categoryId}`;
     pageTitle = PARENT_CATEGORY_MAP[categoryId] || "Category";
     breadcrumbText = `<a href="Home.html">Home</a> &gt; ${pageTitle}`;
-  } else {
-    // Không có tham số - hiển thị tất cả sản phẩm
-    apiUrl = `${API_BASE}/products`;
+  } else if (searchQuery) {
+    await loadCategories();
+    return;
   }
 
-  console.log("API URL:", apiUrl);
-
-  // Cập nhật tiêu đề và breadcrumb
   document.getElementById("page-title").textContent = pageTitle;
   document.getElementById("breadcrumb").innerHTML = breadcrumbText;
 
-  // Tải danh sách categories cho sidebar
   await loadCategories();
 
-  // Tải sản phẩm
   try {
     console.log("Fetching products from:", apiUrl);
     const response = await fetch(apiUrl);
@@ -80,78 +73,69 @@ async function loadProducts() {
     }
 
     const data = await response.json();
-    console.log("API Response:", data);
+    window.allProducts = extractProductsArray(data);
 
     displayProducts(data);
+    if (typeof window.initFilters === "function") {
+      window.initFilters();
+    }
   } catch (error) {
     console.error("Error loading products:", error);
-    document.getElementById(
-      "product-grid"
-    ).innerHTML = `<div class="error-message">
+    const productGrid = document.getElementById("product-grid");
+    if (productGrid) {
+      productGrid.innerHTML = `<div class="error-message">
           <p>Error loading products: ${error.message}</p>
           <p>API URL: ${apiUrl}</p>
         </div>`;
+    }
   }
 }
 
-async function loadCategories() {
-  // Tải danh sách categories cho sidebar
-  try {
-    console.log("Loading categories from:", `${API_BASE}/categories`);
-    const response = await fetch(`${API_BASE}/categories`);
+function getParentCategoryId(subcategoryId) {
+  const subToParentMap = {
+    1: 1,
+    6: 1,
+    12: 1,
+    4: 2,
+    3: 2,
+    2: 2,
+    7: 3,
+    8: 3,
+    9: 3,
+    5: 4,
+    10: 4,
+    11: 4,
+  };
+  return subToParentMap[subcategoryId] || 1;
+}
 
+// Hàm helper để lấy parent category name
+function getParentCategoryName(subcategoryId) {
+  const parentId = getParentCategoryId(subcategoryId);
+  return PARENT_CATEGORY_MAP[parentId] || "Category";
+}
+
+async function loadCategories() {
+  try {
+    const response = await fetch(`${API_BASE}/categories`);
     if (!response.ok) {
-      console.warn(
-        `Categories API returned ${response.status}, using static data`
-      );
       displayStaticCategories();
       return;
     }
-
     const data = await response.json();
-    console.log("Categories response:", data);
-
-    // Xử lý nhiều định dạng response
     let categories = [];
 
-    // TH1: {success: true, data: {rows: [...]}}
-    if (data && data.success && data.data && data.data.rows) {
-      categories = data.data.rows;
-    }
-    // TH2: {rows: [...]}
-    else if (data && data.rows && Array.isArray(data.rows)) {
-      categories = data.rows;
-    }
-    // TH3: {data: [...]}
-    else if (data && data.data && Array.isArray(data.data)) {
-      categories = data.data;
-    }
-    // TH4: [...]
-    else if (Array.isArray(data)) {
-      categories = data;
-    }
-    // TH5: Object khác
-    else if (typeof data === "object") {
-      // Thử tìm mảng trong object
+    if (typeof data === "object") {
       for (const key in data) {
         if (Array.isArray(data[key])) {
           categories = data[key];
           break;
         }
       }
-
-      // Nếu không tìm thấy mảng, chuyển object thành mảng
-      if (categories.length === 0) {
-        categories = Object.values(data);
-      }
     }
-
-    console.log("Processed categories:", categories);
-
     if (categories.length > 0) {
       displayCategories(categories);
     } else {
-      console.warn("No categories found in response, using static data");
       displayStaticCategories();
     }
   } catch (error) {
@@ -161,8 +145,6 @@ async function loadCategories() {
 }
 
 function displayStaticCategories() {
-  // Hiển thị categories tĩnh nếu API không hoạt động
-
   const staticCategories = [
     { CategoryID: 1, CategoryName: "Sofa" },
     { CategoryID: 6, CategoryName: "BeanBag Chair" },
@@ -182,29 +164,71 @@ function displayStaticCategories() {
 
 function displayCategories(categories) {
   const categoryList = document.getElementById("category-list");
+  if (!categoryList) {
+    return;
+  }
   categoryList.innerHTML = "";
 
   if (!Array.isArray(categories)) {
-    console.error("Categories is not an array:", categories);
     categoryList.innerHTML = "<li>Error loading categories</li>";
     return;
   }
 
-  // Lọc categories để chỉ hiển thị những category chính
-  const mainCategories = categories.filter(
-    (cat) =>
-      cat.ParentCategoryID == cat.CategoryID ||
-      [1, 2, 3].includes(cat.CategoryID)
-  );
+  const currentParentCategoryId = getUrlParameter("category");
+  const currentSubcategoryId = getUrlParameter("subcategory");
 
-  // Nếu không có main categories, hiển thị tất cả
-  const categoriesToShow =
-    mainCategories.length > 0 ? mainCategories : categories;
+  let categoriesToDisplay = [];
+  let parentIdToFilter = null;
 
-  categoriesToShow.forEach((category) => {
+  if (currentParentCategoryId) {
+    parentIdToFilter = currentParentCategoryId;
+  } else if (currentSubcategoryId) {
+    parentIdToFilter = findParentIdBySubcategoryId(
+      parseInt(currentSubcategoryId),
+      categories
+    );
+  }
+
+  if (parentIdToFilter) {
+    categoriesToDisplay = categories.filter(
+      (cat) =>
+        cat.ParentCategoryID &&
+        cat.ParentCategoryID.toString() === parentIdToFilter &&
+        cat.CategoryID !== cat.ParentCategoryID
+    );
+
+    if (categoriesToDisplay.length === 0) {
+      categoriesToDisplay = getSubcategoriesByParentId(
+        parseInt(parentIdToFilter),
+        categories
+      );
+    }
+  } else {
+    categoriesToDisplay = categories.filter(
+      (cat) =>
+        cat.CategoryID &&
+        cat.ParentCategoryID &&
+        cat.CategoryID !== cat.ParentCategoryID
+    );
+    if (categoriesToDisplay.length === 0) {
+      categoriesToDisplay = categories;
+    }
+  }
+  if (categoriesToDisplay.length === 0) {
+    categoryList.innerHTML = "<li>No categories available</li>";
+    return;
+  }
+  // Tạo list categories
+  categoriesToDisplay.forEach((category) => {
     if (category.CategoryID && category.CategoryName) {
       const li = document.createElement("li");
-      li.className = "Category";
+      li.className = "category-item";
+      if (
+        currentSubcategoryId &&
+        category.CategoryID.toString() === currentSubcategoryId
+      ) {
+        li.classList.add("active");
+      }
       const a = document.createElement("a");
       a.href = `Products.html?subcategory=${category.CategoryID}`;
       a.textContent = category.CategoryName;
@@ -212,20 +236,54 @@ function displayCategories(categories) {
       categoryList.appendChild(li);
     }
   });
-
-  // Nếu không có category nào được hiển thị
-  if (categoryList.children.length === 0) {
-    categoryList.innerHTML = "<li>No categories available</li>";
-  }
 }
 
+function findParentIdBySubcategoryId(subcategoryId, allCategories) {
+  const foundCategory = allCategories.find(
+    (cat) =>
+      cat.CategoryID && cat.CategoryID.toString() === subcategoryId.toString()
+  );
+  if (foundCategory && foundCategory.ParentCategoryID) {
+    return foundCategory.ParentCategoryID.toString();
+  }
+  return getParentCategoryId(subcategoryId).toString();
+}
+
+function getParentCategoryId(subcategoryId) {
+  const subToParentMap = {
+    1: 1,
+    6: 1,
+    12: 1,
+    2: 2,
+    3: 2,
+    4: 2,
+    7: 3,
+    8: 3,
+    9: 3,
+    5: 4,
+    10: 4,
+    11: 4,
+  };
+  return subToParentMap[subcategoryId] || 1;
+}
+
+function getSubcategoriesByParentId(parentId, allCategories) {
+  const subcategoryMap = {
+    1: [1, 6, 12],
+    2: [2, 3, 4],
+    3: [7, 8, 9],
+    4: [5, 10, 11],
+  };
+  const subcategoryIds = subcategoryMap[parentId] || [];
+  return allCategories.filter((cat) => subcategoryIds.includes(cat.CategoryID));
+}
 function displayProducts(productsData) {
   const productGrid = document.getElementById("product-grid");
+  if (!productGrid) {
+    console.error("Product grid element not found");
+    return;
+  }
   productGrid.innerHTML = "";
-
-  console.log("Displaying products:", productsData);
-
-  // Kiểm tra và chuyển đổi dữ liệu thành mảng
   let productsArray = [];
 
   // Phân tích response structure
@@ -263,15 +321,11 @@ function displayProducts(productsData) {
       }
     }
   }
-
-  console.log("Processed products array:", productsArray);
-
   if (!Array.isArray(productsArray) || productsArray.length === 0) {
     productGrid.innerHTML = `
         <div class="no-products">
           <h3>No products found</h3>
           <p>There are no products available in this category.</p>
-          <a href="Products.html" class="btn-view-all">View All Products</a>
         </div>`;
     return;
   }
@@ -279,23 +333,17 @@ function displayProducts(productsData) {
   // Hiển thị sản phẩm
   productsArray.forEach((product) => {
     if (!product || typeof product !== "object") {
-      console.warn("Invalid product data:", product);
       return;
     }
+    const productId = product.ProductID || product.id;
+    const productName = product.ProductName || product.Name;
+    const price = product.Price || product.price;
+    const color = product.Color || product.Colors || "Various Colors";
 
-    // Lấy thông tin sản phẩm
-    const productId = product.ProductID || product.id || "";
-    const productName =
-      product.ProductName || product.Name || "Unnamed Product";
-    const price = product.Price || product.price || 0;
-    const oldPrice = product.OldPrice || product.oldPrice || null;
-
-    // Xử lý hình ảnh
-    let imageUrl = "LivingSpace.webp"; // Giá trị mặc định
+    let imageUrl = "LivingSpace.webp";
 
     if (product.ImageURLs) {
       try {
-        // Thử parse nếu là JSON
         const urls = JSON.parse(product.ImageURLs);
         if (Array.isArray(urls) && urls.length > 0) {
           imageUrl = urls[0];
@@ -303,22 +351,18 @@ function displayProducts(productsData) {
           imageUrl = urls;
         }
       } catch (e) {
-        // Nếu không phải JSON, dùng trực tiếp
         if (typeof product.ImageURLs === "string") {
           imageUrl = product.ImageURLs;
         }
       }
     }
-
     // Tạo card sản phẩm
     const productCard = document.createElement("a");
     productCard.href = `Product_Detail.html?id=${productId}`;
     productCard.className = "product-link";
-
     const cardDiv = document.createElement("div");
     cardDiv.className = "product-card";
 
-    // Tạo HTML cho sản phẩm
     cardDiv.innerHTML = `
         <div class="product-image">
           <img src="${imageUrl}" alt="${productName}" onerror="this.onerror=null; this.src='LivingSpace.webp'" />
@@ -326,13 +370,9 @@ function displayProducts(productsData) {
         <div class="product-info">
           <div class="product-name">${productName}</div>
           <div class="price-container">
-            <div class="price">${formatPrice(price)}₫</div>
-            ${
-              oldPrice
-                ? `<div class="old-price">${formatPrice(oldPrice)}₫</div>`
-                : ""
-            }
+            <div class="price">${formatPrice(price)}  VND</div>
           </div>
+          <div class="product-name" style="color: #373737ff;">Color: ${color}</div>
         </div>
       `;
 
@@ -351,19 +391,45 @@ function formatPrice(price) {
   }
 }
 
-// Tải sản phẩm khi trang được load
-document.addEventListener("DOMContentLoaded", loadProducts);
-
-// Thêm event listener cho filter và sort (nếu có)
-function setupEventListeners() {
-  const sortSelect = document.getElementById("sort-select");
-  if (sortSelect) {
-    sortSelect.addEventListener("change", function () {
-      console.log("Sort by:", this.value);
-      // Thêm logic sort tại đây
-    });
+function extractProductsArray(productsData) {
+  let productsArray = [];
+  if (
+    productsData &&
+    productsData.success &&
+    productsData.data &&
+    productsData.data.rows
+  ) {
+    productsArray = productsData.data.rows;
+  } else if (
+    productsData &&
+    productsData.rows &&
+    Array.isArray(productsData.rows)
+  ) {
+    productsArray = productsData.rows;
+  } else if (
+    productsData &&
+    productsData.data &&
+    Array.isArray(productsData.data)
+  ) {
+    productsArray = productsData.data;
+  } else if (Array.isArray(productsData)) {
+    productsArray = productsData;
+  } else if (productsData && typeof productsData === "object") {
+    for (const key in productsData) {
+      if (Array.isArray(productsData[key])) {
+        productsArray = productsData[key];
+        break;
+      }
+    }
   }
+  return productsArray || [];
 }
 
-// Gọi setup khi DOM ready
-document.addEventListener("DOMContentLoaded", setupEventListeners);
+document.addEventListener("DOMContentLoaded", function () {
+  loadProducts();
+});
+
+window.getUrlParameter = getUrlParameter;
+window.displayProducts = displayProducts;
+window.formatPrice = formatPrice;
+window.extractProductsArray = extractProductsArray;

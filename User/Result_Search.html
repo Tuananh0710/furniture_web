@@ -7,28 +7,19 @@
     <link rel="stylesheet" href="Products.css" />
   </head>
   <body>
-    <!-- Header -->
     <div id="header"></div>
     <script>
       fetch("Header.html")
         .then((res) => res.text())
         .then((data) => {
           document.getElementById("header").innerHTML = data;
+          if (typeof setupGlobalSearch === "function") {
+              setupGlobalSearch();
+          }
         });
     </script>
-
-    <div class="breadcrumb" id="breadcrumb"></div>
-
     <div class="container">
       <div class="sidebar">
-        <div class="filter-box">
-          <div class="filter-title">CATEGORIES</div>
-          <ul id="category-list">
-            <!-- Categories sẽ được tải động -->
-          </ul>
-        </div>
-
-        <!-- Trong phần Price Range -->
         <div class="filter-box">
           <div class="filter-title">PRICE RANGE</div>
           <ul>
@@ -99,7 +90,6 @@
           </ul>
         </div>
 
-        <!-- Trong phần Colors -->
         <div class="filter-box">
           <div class="filter-title">COLORS</div>
           <div class="colors">
@@ -158,16 +148,12 @@
         </div>
       </div>
 
-      <!-- Product Section -->
       <div class="products">
         <div class="products-header">
           <h2 id="page-title"></h2>
           <div id="search-results-info" class="search-results-info"></div>
         </div>
-
-        <div class="product-grid" id="product-grid">
-          <!-- Product sẽ được tải động bằng JavaScript -->
-        </div>
+        <div class="product-grid" id="product-grid"></div>
       </div>
     </div>
 
@@ -178,7 +164,7 @@
         .then((data) => (document.getElementById("footer").innerHTML = data))
         .catch((error) => console.error("Lỗi khi tải footer:", error));
     </script>
-    <script src="Products_Category.js"></script>
+    <script src="Result_Search.js"></script>
     <script src="Products_Filter.js"></script>
   </body>
 </html>

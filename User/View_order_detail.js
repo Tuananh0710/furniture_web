@@ -2,17 +2,11 @@ const API_URL = "http://localhost:3000/api/orders";
 
 // Hàm lấy OrderID từ URL
 function getOrderIdFromUrl() {
-  // Lấy ID từ query string 'id' (Ví dụ: View_Order_Detail.html?orderid=1)
   const urlParams = new URLSearchParams(window.location.search);
   return urlParams.get("orderId");
 }
 
-/**
- * Hàm gọi API để lấy chi tiết đơn hàng
- */
 async function fetchOrderDetail() {
-  console.group(" === DEBUG fetchOrderDetail ===");
-
   try {
     // 1. Debug URL và orderId
     console.log("📝 Bước 1: Lấy Order ID từ URL");
@@ -242,7 +236,7 @@ function renderOrderDetail(data) {
   // Cập nhật thông tin chung của đơn hàng
   document.getElementById(
     "order-detail-title"
-  ).textContent = `View Order Detail `;
+  ).textContent = `View Order Detail`;
 
   document.getElementById("shipping").textContent = data.ShippingFee;
 
@@ -257,33 +251,109 @@ function renderOrderDetail(data) {
 
   // Kiểm tra nếu có Items mới lặp
   if (data.Items && Array.isArray(data.Items)) {
-    data.Items.forEach((item) => {
+    console.log("🛒 Danh sách Items từ API:", data.Items);
+
+    data.Items.forEach((item, index) => {
+      console.log(`📦 Item ${index + 1}:`, {
+        ProductID: item.ProductID,
+        ProductName: item.ProductName,
+        ProductCode: item.ProductCode,
+        "ProductID type": typeof item.ProductID,
+        "ProductID value": item.ProductID,
+        "Is valid ID":
+          item.ProductID &&
+          item.ProductID !== "undefined" &&
+          item.ProductID !== "null",
+      });
+
+      // FIX 1: Kiểm tra và chuẩn hóa ProductID
+      let productId = item.ProductID;
+
+      // Kiểm tra nếu ProductID không hợp lệ
+      if (!productId || productId === "undefined" || productId === "null") {
+        console.error(`❌ ProductID không hợp lệ cho item ${index + 1}:`, item);
+        // Thử các key khác có thể chứa ID
+        productId =
+          item.productId || item.productID || item.id || item.ProductId;
+        console.log(`🔄 Thử các key khác:`, { productId });
+      }
+
+      // FIX 2: Nếu vẫn không có ID hợp lệ, bỏ qua item này
+      if (!productId || productId === "undefined" || productId === "null") {
+        console.warn(
+          `⚠️ Bỏ qua item ${index + 1} vì không có ProductID hợp lệ`
+        );
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td class="product-info">
+              <img src="placeholder.webp" alt="No product" />
+              <span style="color: #666;">${
+                item.ProductName || "Unknown Product"
+              }</span>
+              <div>
+                  <p><b>Mã SP: </b>${item.ProductCode || "N/A"}</p>
+                  <p style="color: red; font-size: 12px;">(Không thể xem chi tiết - thiếu ID)</p>
+              </div>
+          </td>
+          <td>${item.UnitPrice || "N/A"}</td>
+          <td>${item.Quantity || "N/A"}</td>
+          <td>${item.Subtotal || "N/A"}</td>
+        `;
+        tbody.appendChild(row);
+        return;
+      }
+
+      // FIX 3: Đảm bảo ProductID là số (parse nếu cần)
+      const numericProductId = parseInt(productId);
+      if (isNaN(numericProductId)) {
+        console.error(`❌ ProductID không phải số:`, productId);
+        // Vẫn sử dụng, nhưng ghi log warning
+      }
+
       const row = document.createElement("tr");
+
       // Tạo URL ảnh
       const imageUrl = item.FirstImageUrl
         ? `../user/${item.FirstImageUrl}`
         : "placeholder.webp";
 
+      // FIX 4: Tạo link với ProductID đã được kiểm tra
+      const productDetailUrl = `Product_Detail.html?id=${
+        numericProductId || productId
+      }`;
+      console.log(`🔗 Link cho ${item.ProductName}:`, productDetailUrl);
+
       row.innerHTML = `
           <td class="product-info">
               <img src="${imageUrl}" alt="${item.ProductName}" />
-              <a href="Product_Detail.html?id=${item.ProductID}">
+              <a href="${productDetailUrl}" 
+                 target="_blank"
+                 onclick="console.log('🖱️ Clicked product:', ${JSON.stringify({
+                   id: numericProductId || productId,
+                   name: item.ProductName,
+                 })})">
               <span>${item.ProductName}</span>
               <div>
                   <p><b>Mã SP: </b>${item.ProductCode}</p>
+                  <p style="color: #666; font-size: 12px;">Click để xem chi tiết</p>
               </div>
               </a>
           </td>
           <td>${item.UnitPrice}</td>
           <td>${item.Quantity}</td>
           <td>${item.Subtotal}</td>
-          `;
+      `;
+
       tbody.appendChild(row);
+      console.log(`✅ Đã thêm item ${index + 1} vào bảng`);
     });
   } else {
+    console.log("📭 Không có Items trong order");
     tbody.innerHTML =
       '<tr><td colspan="4" style="color: orange;">Đơn hàng không có sản phẩm nào.</td></tr>';
   }
+
+  console.log("🎉 Render order detail completed");
 }
 
 document.addEventListener("DOMContentLoaded", fetchOrderDetail);

@@ -4,8 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Header Example</title>
-
-    <!-- Font Awesome (để dùng icon) -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
@@ -15,24 +13,22 @@
 
   <body>
     <header>
-      <!-- Dòng trên -->
       <div class="top-bar">
-        <!-- Ô tìm kiếm -->
-        <div class="search-box">
+          <form
+            action="Result_Search.html"
+            method="GET"
+            class="search-box"
+          >
           <input type="text" id="searchInput" placeholder="Search..." />
-          <button>
-            <a href="Products.html" id="searchButton"
-              ><i class="fa-solid fa-magnifying-glass"></i
-            ></a>
+          <button id="searchButton">
+            <i class="fa-solid fa-magnifying-glass"></i>
           </button>
-        </div>
-
-        <!-- Logo -->
+        </form>
+        
         <div class="logo">
           <a href="Home.html">Loom</a>
         </div>
 
-        <!-- Các icon bên phải -->
         <div class="icons">
           <div>
             <i class="fa-regular fa-user"></i
@@ -49,7 +45,6 @@
         </div>
       </div>
 
-      <!-- Dòng menu -->
       <nav class="menu" id="menu">
         <a href="Home.html" class="brand">New</a>
         <ul class="nav-list">
@@ -89,7 +84,6 @@
           </li>
         </ul>
       </nav>
-      <script src="Header_Search.js"></script>
     </header>
   </body>
 </html>

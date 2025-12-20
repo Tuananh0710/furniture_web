@@ -85,6 +85,7 @@ body {
   justify-content: center;
   flex-wrap: wrap;
   gap: 25px;
+  text-decoration: none;
 }
 
 .item {
@@ -212,4 +213,9 @@ body {
   color: #2e7d32;
   font-weight: bold;
   margin-bottom: 12px;
+}
+
+.item a {
+  text-decoration: none;
+  color: black;
 }

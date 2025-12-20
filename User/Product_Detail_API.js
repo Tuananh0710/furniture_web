@@ -1,40 +1,73 @@
-// 1. Hàm lấy Product ID từ URL (Ví dụ: id=2 trong Product_Detail.html?id=2)
 function getProductIdFromUrl() {
   const urlParams = new URLSearchParams(window.location.search);
   return urlParams.get("id");
 }
 
-// 2. Hàm gọi API và cập nhật giao diện
 async function fetchProductDetail() {
   const productId = getProductIdFromUrl();
-  if (!productId) {
-    console.error("Lỗi: Không tìm thấy ID sản phẩm trong URL.");
-    document.querySelector(".product-info").innerHTML =
-      "<h2> Product ID not found. Please return to the listing page.</h2>";
+
+  // DEBUG chi tiết
+  console.log("🔍 DEBUG fetchProductDetail:");
+  console.log("📌 URL hiện tại:", window.location.href);
+  console.log("📌 Product ID từ URL:", productId);
+  console.log("📌 Type of productId:", typeof productId);
+
+  if (!productId || productId === "undefined" || productId === "null") {
+    console.error("❌ Lỗi: Không tìm thấy ID sản phẩm trong URL.");
+    console.log("📌 Full URL search:", window.location.search);
+
+    document.querySelector(".product-info").innerHTML = `
+      <div style="color: red; padding: 20px;">
+        <h2>Product ID not found</h2>
+        <p>URL: ${window.location.href}</p>
+        <p>Please return to the <a href="Product_List.html">product list</a> and select a product.</p>
+      </div>`;
     return;
   }
+
   const apiUrl = `http://localhost:3000/api/products/${productId}`;
+  console.log("🌐 API URL:", apiUrl);
+
   try {
+    console.time("⏱️ API Fetch Time");
     const response = await fetch(apiUrl);
+    console.timeEnd("⏱️ API Fetch Time");
+
+    console.log("📥 API Response:", {
+      status: response.status,
+      statusText: response.statusText,
+      ok: response.ok,
+      url: response.url,
+    });
+
     if (!response.ok) {
       throw new Error(`Lỗi HTTP! Status: ${response.status}`);
     }
+
     const result = await response.json();
+    console.log("📦 API Result:", result);
+
     if (result.success && result.data) {
       updateProductHTML(result.data);
     } else {
-      console.error("API trả về không thành công hoặc không có dữ liệu.");
-      document.querySelector(".product-info").innerHTML =
-        "<h2>No data was found for this product.</h2>";
+      console.error("API trả về không thành công:", result);
+      document.querySelector(".product-info").innerHTML = `
+        <h2>No data was found for this product.</h2>
+        <p>Product ID: ${productId}</p>
+        <p>API Response: ${JSON.stringify(result)}</p>`;
     }
   } catch (error) {
-    console.error("Lỗi trong quá trình Fetch API:", error);
-    document.querySelector(".product-info").innerHTML =
-      "<h2>Unable to load product information. Please check your API connection.</h2>";
+    console.error("❌ Lỗi trong quá trình Fetch API:", error);
+    console.error("📍 Stack trace:", error.stack);
+
+    document.querySelector(".product-info").innerHTML = `
+      <h2>Unable to load product information.</h2>
+      <p>Error: ${error.message}</p>
+      <p>Product ID: ${productId}</p>
+      <p>Please check your API connection at: <code>http://localhost:3000/api/products/${productId}</code></p>`;
   }
 }
 
-// 3. Hàm cập nhật nội dung HTML
 // 3. Hàm cập nhật nội dung HTML
 function updateProductHTML(product) {
   console.log("🔍 Product data received:", product);
@@ -215,7 +248,7 @@ async function addToCart() {
   const quantityInput = document.getElementById("quantity");
   const productId = parseInt(productIdString);
   const quantity = quantityInput ? parseInt(quantityInput.value) : 1;
-  const userId = 4;
+  const userId = getUserId();
   if (!productId || isNaN(quantity) || quantity < 1) {
     console.error("Lỗi: ID sản phẩm không hợp lệ.");
     return;
@@ -283,6 +316,16 @@ function hideCartNotification() {
     clearTimeout(notification.autoHideTimeout);
     notification.autoHideTimeout = null;
   }
+}
+
+// Hàm lấy ID người dùng
+function getUserId() {
+  const userData = localStorage.getItem("user");
+  if (userData) {
+    const user = JSON.parse(userData);
+    return user.id || user.userId || user.UserID;
+  }
+  return null;
 }
 
 // 7. Lắng nghe sự kiện DOMContentLoaded để thêm sự kiện click

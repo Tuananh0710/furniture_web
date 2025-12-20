@@ -78,7 +78,15 @@ body {
   margin-right: 8px;
   cursor: pointer;
 }
-
+#category-list a {
+  text-decoration: none;
+  color: #000000;
+}
+#category-list a:hover {
+  color: #008000;
+  text-decoration: underline;
+  cursor: pointer;
+}
 /* Color palette */
 .colors {
   display: grid;
@@ -97,6 +105,22 @@ body {
 .color-circle:hover {
   border: 1px solid black;
 }
+.color-circle.selected {
+  border-color: #333;
+  transform: scale(1.1);
+}
+.color-circle.selected::after {
+  content: "✓";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.8);
+}
+
 /* Product section */
 .products {
   flex: 1;
@@ -187,4 +211,10 @@ body {
     width: 45%;
     margin: 10px;
   }
+}
+
+.color-circle.active {
+  border: 2px solid #000;
+  transform: scale(1.2);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
