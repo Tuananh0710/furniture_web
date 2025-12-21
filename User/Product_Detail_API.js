@@ -1,65 +1,39 @@
 function getProductIdFromUrl() {
   const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get("id");
+  return urlParams.get("Id");
 }
 
 async function fetchProductDetail() {
   const productId = getProductIdFromUrl();
 
-  // DEBUG chi tiết
-  console.log("🔍 DEBUG fetchProductDetail:");
-  console.log("📌 URL hiện tại:", window.location.href);
-  console.log("📌 Product ID từ URL:", productId);
-  console.log("📌 Type of productId:", typeof productId);
-
   if (!productId || productId === "undefined" || productId === "null") {
-    console.error("❌ Lỗi: Không tìm thấy ID sản phẩm trong URL.");
-    console.log("📌 Full URL search:", window.location.search);
-
     document.querySelector(".product-info").innerHTML = `
       <div style="color: red; padding: 20px;">
         <h2>Product ID not found</h2>
         <p>URL: ${window.location.href}</p>
-        <p>Please return to the <a href="Product_List.html">product list</a> and select a product.</p>
       </div>`;
     return;
   }
 
   const apiUrl = `http://localhost:3000/api/products/${productId}`;
-  console.log("🌐 API URL:", apiUrl);
 
   try {
-    console.time("⏱️ API Fetch Time");
     const response = await fetch(apiUrl);
-    console.timeEnd("⏱️ API Fetch Time");
-
-    console.log("📥 API Response:", {
-      status: response.status,
-      statusText: response.statusText,
-      ok: response.ok,
-      url: response.url,
-    });
 
     if (!response.ok) {
       throw new Error(`Lỗi HTTP! Status: ${response.status}`);
     }
-
     const result = await response.json();
-    console.log("📦 API Result:", result);
 
     if (result.success && result.data) {
       updateProductHTML(result.data);
     } else {
-      console.error("API trả về không thành công:", result);
       document.querySelector(".product-info").innerHTML = `
         <h2>No data was found for this product.</h2>
         <p>Product ID: ${productId}</p>
         <p>API Response: ${JSON.stringify(result)}</p>`;
     }
   } catch (error) {
-    console.error("❌ Lỗi trong quá trình Fetch API:", error);
-    console.error("📍 Stack trace:", error.stack);
-
     document.querySelector(".product-info").innerHTML = `
       <h2>Unable to load product information.</h2>
       <p>Error: ${error.message}</p>
@@ -68,12 +42,7 @@ async function fetchProductDetail() {
   }
 }
 
-// 3. Hàm cập nhật nội dung HTML
 function updateProductHTML(product) {
-  console.log("🔍 Product data received:", product);
-  console.log("🖼️ ImageURLs type:", typeof product.ImageURLs);
-  console.log("🖼️ ImageURLs value:", product.ImageURLs);
-
   const formatCurrency = (amount) => {
     const number = parseFloat(String(amount).replace(/,/g, ""));
     if (isNaN(number)) return String(amount);
@@ -126,58 +95,35 @@ function updateProductHTML(product) {
     specsContainer.innerHTML = specsHTML;
   }
 
-  // --- SỬA LẠI PHẦN NÀY: Cập nhật Hình ảnh (Images) ---
   const mainImage = document.getElementById("mainImage");
   const thumbnailContainer = document.querySelector(".thumbnail-container");
 
-  console.log("🔄 Xử lý ảnh sản phẩm...");
-
-  // Tạo mảng chứa URLs ảnh
   let imageUrls = [];
 
   try {
-    // Xử lý ImageURLs có thể là string JSON hoặc array
     if (product.ImageURLs) {
-      console.log("📝 Raw ImageURLs:", product.ImageURLs);
-
       if (typeof product.ImageURLs === "string") {
-        // Trường hợp 1: Là JSON string
-        console.log("🔄 Đang parse JSON string...");
         imageUrls = JSON.parse(product.ImageURLs);
-        console.log("✅ Đã parse thành array:", imageUrls);
       } else if (Array.isArray(product.ImageURLs)) {
-        // Trường hợp 2: Đã là array
-        console.log("✅ ImageURLs đã là array");
         imageUrls = product.ImageURLs;
       }
     }
   } catch (error) {
-    console.error("❌ Lỗi khi parse ImageURLs:", error);
-    console.log("📝 ImageURLs gốc:", product.ImageURLs);
     imageUrls = [];
   }
-
-  console.log("🖼️ Final imageUrls array:", imageUrls);
 
   const baseUrl = "";
 
   if (imageUrls && imageUrls.length > 0) {
     const firstImageUrl = baseUrl + imageUrls[0];
-    console.log("🎯 Main image URL:", firstImageUrl);
-
     if (mainImage) {
       mainImage.src = firstImageUrl;
-      // Thêm fallback cho lỗi tải ảnh
       mainImage.onerror = function () {
-        console.error("⚠️ Không thể tải ảnh chính:", firstImageUrl);
         this.src = "placeholder.jpg";
       };
     }
-
-    // Cập nhật Thumbnail
     if (thumbnailContainer) {
       thumbnailContainer.innerHTML = "";
-
       imageUrls.forEach((url, index) => {
         const img = document.createElement("img");
         const fullUrl = baseUrl + url;
@@ -185,26 +131,16 @@ function updateProductHTML(product) {
         img.src = fullUrl;
         img.alt = `thumb${index + 1}`;
         img.title = `Hình ${index + 1}`;
-
-        // Thêm fallback cho thumbnail
         img.onerror = function () {
-          console.error("⚠️ Không thể tải thumbnail:", fullUrl);
           this.src = "placeholder.jpg";
         };
-
         img.onclick = function () {
-          console.log("🖱️ Clicked thumbnail:", fullUrl);
           changeImage(this);
         };
-
         thumbnailContainer.appendChild(img);
       });
-
-      console.log(`✅ Đã thêm ${imageUrls.length} thumbnail`);
     }
   } else {
-    console.log("📭 Không có ảnh, sử dụng placeholder");
-    // Nếu không có ảnh, dùng placeholder
     if (mainImage) {
       mainImage.src = "placeholder.jpg";
     }
@@ -212,16 +148,12 @@ function updateProductHTML(product) {
       thumbnailContainer.innerHTML = "<p>No images available</p>";
     }
   }
-
-  // --- Cập nhật Mô tả (Description) ---
   const descriptionPanel = document.getElementById("description");
   if (descriptionPanel) {
     descriptionPanel.innerHTML = `<p>${
       product.Description || "Product information is being updated."
     }</p>`;
   }
-
-  // Kiểm tra tồn kho
   const addToCartBtn = document.querySelector(".add-to-cart");
   if (product.StockQuantity !== undefined && product.StockQuantity <= 0) {
     if (addToCartBtn) {
@@ -229,10 +161,7 @@ function updateProductHTML(product) {
       addToCartBtn.disabled = true;
     }
   }
-
-  console.log("✅ Đã cập nhật HTML thành công");
 }
-// 4. Hàm hỗ trợ chuyển ảnh (giữ nguyên hoặc bổ sung nếu chưa có)
 function changeImage(imgElement) {
   const mainImage = document.getElementById("mainImage");
   if (mainImage) {
@@ -240,9 +169,7 @@ function changeImage(imgElement) {
   }
 }
 document.addEventListener("DOMContentLoaded", fetchProductDetail);
-//
-//
-// 5. Hàm thêm sản phẩm vào giỏ hàng (sử dụng Product ID và Quantity)
+
 async function addToCart() {
   const productIdString = getProductIdFromUrl();
   const quantityInput = document.getElementById("quantity");
@@ -270,21 +197,15 @@ async function addToCart() {
     const result = await response.json();
 
     if (response.ok && result.success) {
-      console.log("Sản phẩm đã được thêm vào giỏ hàng:", result.data);
       showCartNotification();
     } else {
-      console.error(
-        "Lỗi khi thêm sản phẩm vào giỏ hàng:",
-        result.message || "Lỗi không xác định"
-      );
       alert(`The product is already in your shopping cart.`);
     }
   } catch (error) {
-    console.error("Lỗi trong quá trình Fetch API Add to Cart:", error);
     alert("Connection error!  Unable to add product to cart.");
   }
 }
-// Hàm hiện thông báo thêm vào giỏ hàng
+
 function showCartNotification() {
   const overlay = document.getElementById("cartNotificationOverlay");
   const notification = document.getElementById("cartNotification");
@@ -302,7 +223,7 @@ function showCartNotification() {
     overlay.addEventListener("click", hideCartNotification);
   }
 }
-// Hàm ẩn thông báo thêm vào giỏ hàng
+
 function hideCartNotification() {
   const notification = document.getElementById("cartNotification");
   const overlay = document.getElementById("cartNotificationOverlay");
@@ -318,7 +239,6 @@ function hideCartNotification() {
   }
 }
 
-// Hàm lấy ID người dùng
 function getUserId() {
   const userData = localStorage.getItem("user");
   if (userData) {
@@ -328,10 +248,8 @@ function getUserId() {
   return null;
 }
 
-// 7. Lắng nghe sự kiện DOMContentLoaded để thêm sự kiện click
 document.addEventListener("DOMContentLoaded", () => {
-  fetchProductDetail(); // Tải chi tiết sản phẩm
-
+  fetchProductDetail();
   const addToCartBtn = document.querySelector(".add-to-cart");
   if (addToCartBtn) {
     addToCartBtn.addEventListener("click", addToCart);

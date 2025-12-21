@@ -74,7 +74,7 @@ function createCartItemRow(item) {
             <img src="${
               item.ImageURLs ? "1.jpg" : item.ImageURLs.split(",")[1]
             }" alt="${item.ProductName}" />
-            <a href="Product_Detail.html?productId=${item.ProductID}">
+            <a href="Product_Detail.html?id=${item.ProductID}">
                 <span>${item.ProductName}</span>
                 <div>
                     <p><b>Product Code:</b> ${item.ProductCode}</p>

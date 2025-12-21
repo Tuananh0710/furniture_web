@@ -195,57 +195,14 @@
           </div>
         </div>
 
-        <div class="reviews-list">
-          <!-- Review 1 -->
-          <div class="review-item">
-            <div class="review-header">
-              <div class="reviewer-info">
-                <div class="reviewer-avatar">NT</div>
-                <div class="reviewer-details">
-                  <h4>Nguyen Thanh</h4>
-                  <div class="reviewer-verified">
-                    <i class="fas fa-check-circle"></i> Verified Buyer
-                  </div>
-                </div>
-              </div>
-              <div class="review-date">15/11/2023</div>
-            </div>
-
-            <div class="review-stars">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-            </div>
-
-            <div class="review-content">
-              This kitchen island is amazing! The wood quality is great and the
-              color looks exactly like the pictures. Perfect size for my kitchen
-              space. I especially love the drawers and built-in USB ports—super
-              convenient for using kitchen devices.
-            </div>
-
-            <div class="review-images">
-              <img
-                src="LivingSpace.webp"
-                alt="Review image 1"
-                class="review-image"
-              />
-              <img src="1.jpg" alt="Review image 2" class="review-image" />
-            </div>
-          </div>
-
-          <!-- Review 2 -->
+        <!-- Hiện review -->
+        <div class="reviews-list" id="reviews-container">
           <div class="review-item">
             <div class="review-header">
               <div class="reviewer-info">
                 <div class="reviewer-avatar">LM</div>
                 <div class="reviewer-details">
                   <h4>Le Minh</h4>
-                  <div class="reviewer-verified">
-                    <i class="fas fa-check-circle"></i> Verified Buyer
-                  </div>
                 </div>
               </div>
               <div class="review-date">02/11/2023</div>
@@ -297,16 +254,6 @@
         </div>
 
         <div class="form-body" id="formBody">
-          <div class="form-group">
-            <label for="reviewerName">Full Name *</label>
-            <input
-              type="text"
-              id="reviewerName"
-              placeholder="Enter your full name"
-              required
-            />
-          </div>
-
           <div class="form-group rating-input">
             <label>Your Rating *</label>
             <div class="star-rating" id="starRating">
@@ -318,16 +265,6 @@
             </div>
 
             <input type="hidden" id="ratingValue" value="0" required />
-          </div>
-
-          <div class="form-group">
-            <label for="reviewTitle">Review Title *</label>
-            <input
-              type="text"
-              id="reviewTitle"
-              placeholder="E.g., Great product, worth buying!"
-              required
-            />
           </div>
 
           <div class="form-group">
@@ -394,6 +331,7 @@
     <script src="Product_Detail.js"></script>
     <script src="Product_Detail_API.js"></script>
     <script src="Product_Detail_Related_API.js"></script>
+    <script src="Product_Detail_Review.js"></script>
 
     <!-- Footer -->
     <div id="footer"></div>

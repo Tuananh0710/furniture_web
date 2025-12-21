@@ -318,9 +318,11 @@ function renderOrderDetail(data) {
         : "placeholder.webp";
 
       // FIX 4: Tạo link với ProductID đã được kiểm tra
+      const currentOrderId = getOrderIdFromUrl();
+
       const productDetailUrl = `Product_Detail.html?id=${
         numericProductId || productId
-      }`;
+      }&orderId=${currentOrderId}`;
       console.log(`🔗 Link cho ${item.ProductName}:`, productDetailUrl);
 
       row.innerHTML = `
