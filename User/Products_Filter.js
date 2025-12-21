@@ -11,22 +11,16 @@ function initFilters() {
       applyFilters();
     });
   });
-
   const colorCircles = document.querySelectorAll(".color-circle");
   colorCircles.forEach((circle) => {
     circle.addEventListener("click", function () {
       const color = this.getAttribute("data-color");
       this.classList.toggle("selected");
-
       const index = currentFilters.colors.indexOf(color);
       if (index === -1) {
         currentFilters.colors.push(color);
       } else {
         currentFilters.colors.splice(index, 1);
-      }
-
-      if (typeof updateSelectedColorsDisplay === "function") {
-        updateSelectedColorsDisplay();
       }
       applyFilters();
     });
@@ -40,7 +34,7 @@ function applyFilters() {
 
   if (currentFilters.price !== "all") {
     filteredResults = filteredResults.filter((product) => {
-      const price = parseFloat(product.Price || product.price || 0);
+      const price = parseFloat(product.Price);
       switch (currentFilters.price) {
         case "under-500":
           return price < 500000;
@@ -62,19 +56,15 @@ function applyFilters() {
 
   if (currentFilters.colors.length > 0) {
     filteredResults = filteredResults.filter((product) => {
-      const pColor = (product.Color || product.Colors || "").toLowerCase();
-      return currentFilters.colors.some((c) =>
-        pColor.includes(c.toLowerCase())
+      const pColor = (product.Color || "").toLowerCase();
+      return currentFilters.colors.some((selectedColor) =>
+        pColor.includes(selectedColor.toLowerCase())
       );
     });
   }
-
-  window.displayProducts(filteredResults);
-
-  if (typeof updateProductCount === "function") {
-    updateProductCount(filteredResults.length);
+  if (typeof window.displayProducts === "function") {
+    window.displayProducts(filteredResults);
   }
 }
-
 window.initFilters = initFilters;
 window.applyFilters = applyFilters;

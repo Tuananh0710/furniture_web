@@ -7,10 +7,7 @@
     <link rel="stylesheet" href="MainScreen_Admin.css" />
   </head>
   <body>
-    <!-- Section to display the header -->
     <div id="header_admin"></div>
-
-    <!-- Script to automatically load header.html -->
     <script>
       fetch("Header_Admin.html")
         .then((response) => response.text())
@@ -21,12 +18,9 @@
     </script>
 
     <div class="container">
-      <!-- Date -->
       <div class="date">
         <input type="date" />
       </div>
-
-      <!-- Summary Cards -->
       <div class="summary">
         <div class="card green">
           <div class="icon one">💳</div>
@@ -48,14 +42,6 @@
           <div class="icon">↩️</div>
           <div>
             <p>Returned Items</p>
-            <h3>0</h3>
-          </div>
-        </div>
-
-        <div class="card orange">
-          <div class="icon four">☁️</div>
-          <div>
-            <p>Online Orders</p>
             <h3>0</h3>
           </div>
         </div>
@@ -82,16 +68,6 @@
             <li>Overstocked <span>0</span></li>
           </ul>
         </div>
-
-        <div class="info-box yellow">
-          <h4>🧾 Product Information</h4>
-          <ul>
-            <li>Products / Manufacturers <span>0</span></li>
-            <li>No Selling Price <span>0</span></li>
-            <li>No Purchase Price <span>0</span></li>
-            <li>Uncategorized Items <span>0</span></li>
-          </ul>
-        </div>
       </div>
 
       <!-- Row 3: Charts & News -->
@@ -110,19 +86,5 @@
         </div>
       </div>
     </div>
-
-    <script>
-      // Example: Simple fake loading animation
-      document.addEventListener("DOMContentLoaded", () => {
-        const numbers = document.querySelectorAll("h3, li span");
-        numbers.forEach((num) => {
-          num.style.opacity = 0;
-          setTimeout(() => {
-            num.style.transition = "opacity 1s";
-            num.style.opacity = 1;
-          }, 500);
-        });
-      });
-    </script>
   </body>
 </html>

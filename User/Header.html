@@ -14,17 +14,27 @@
   <body>
     <header>
       <div class="top-bar">
-          <form
-            action="Result_Search.html"
-            method="GET"
-            class="search-box"
+        <form
+          class="search-box"
+          id="searchForm"
+          action="#"
+          onsubmit="return false;"
+        >
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Search for products..."
+            autocomplete="off"
+          />
+          <button
+            type="button"
+            id="searchButton"
+            onclick="const q = document.getElementById('searchInput').value.trim(); if(q) window.location.href='Result_Search.html?q='+encodeURIComponent(q);"
           >
-          <input type="text" id="searchInput" placeholder="Search..." />
-          <button id="searchButton">
             <i class="fa-solid fa-magnifying-glass"></i>
           </button>
         </form>
-        
+
         <div class="logo">
           <a href="Home.html">Loom</a>
         </div>

@@ -2,6 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src * 'unsafe-inline' 'unsafe-eval' data: blob:; 
+           connect-src * 'unsafe-inline' 'unsafe-eval' data: blob:;"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>All Products</title>
     <link rel="stylesheet" href="Products.css" />
@@ -14,7 +19,7 @@
         .then((data) => {
           document.getElementById("header").innerHTML = data;
           if (typeof setupGlobalSearch === "function") {
-              setupGlobalSearch();
+            setupGlobalSearch();
           }
         });
     </script>
