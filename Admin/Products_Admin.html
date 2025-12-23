@@ -6,14 +6,12 @@
     <title>Product List</title>
     <link rel="stylesheet" href="Products_Admin.css" />
   </head>
-
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
   />
 
   <body>
-    <!-- ========== HEADER ========== -->
     <div id="header_admin"></div>
     <script>
       fetch("Header_Admin.html")
@@ -23,7 +21,7 @@
         });
     </script>
 
-    <!-- ========== PRODUCT LIST ========== -->
+    <!--PRODUCT LIST -->
     <div class="list-container">
       <!-- SIDEBAR -->
       <div class="sidebar">
@@ -50,7 +48,7 @@
         </div>
       </div>
 
-      <!-- MAIN -->
+      <!-- MAIN TABLE -->
       <div class="main-content">
         <div class="list-header">
           <h2>Products</h2>
@@ -72,7 +70,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <!-- <tr>
               <td class="Pro1">
                 <a href="#" class="btn-show-detail">VD0511-Navy-M</a>
               </td>
@@ -86,7 +84,7 @@
                 &nbsp;&nbsp;&nbsp;
                 <i class="fa-solid fa-trash" id="Delete"></i>
               </td>
-            </tr>
+            </tr> -->
           </tbody>
         </table>
 
@@ -101,7 +99,7 @@
       </div>
     </div>
 
-    <!-- ========== PRODUCT DETAIL FORM ========== -->
+    <!--PRODUCT DETAIL FORM -->
     <div id="productDetailModal" class="detail-modal">
       <div class="modal-content detail-container-box">
         <div class="detail-header">
@@ -114,25 +112,27 @@
         <div class="detail-content">
           <!-- IMAGE -->
           <div class="detail-image-block">
-            <img src="../User/1.jpg" class="detail-img" />
+            <img src="#" class="detail-img" />
             <div class="detail-thumbs">
-              <img src="../User/2.jpg" />
-              <img src="../User/3.png" />
+              <img src="#" />
+              <img src="#" />
             </div>
           </div>
 
           <!-- INFO -->
           <div class="detail-info">
             <h2>Natural Oak Dining Table</h2>
-            <p><b>Product Code:</b> SP001</p>
-
             <table class="detail-info-table">
+              <tr>
+                <th>Product Code:</th>
+                <td>SP001</td>
+              </tr>
               <tr>
                 <th>Category:</th>
                 <td>Dining Table</td>
               </tr>
               <tr>
-                <th>Quantity:</th>
+                <th>StockQuantity:</th>
                 <td>10</td>
               </tr>
               <tr>
@@ -152,7 +152,7 @@
                 <td>Light Brown</td>
               </tr>
               <tr>
-                <th>Size:</th>
+                <th>Demensions:</th>
                 <td>160 x 80 x 75 cm</td>
               </tr>
               <tr>
@@ -162,6 +162,10 @@
               <tr>
                 <th>Brand:</th>
                 <td>VFurniture</td>
+              </tr>
+              <tr>
+                <th>IsActive:</th>
+                <td>Currently for sale (1)</td>
               </tr>
             </table>
 
@@ -179,7 +183,7 @@
       </div>
     </div>
 
-    <!-- ========== EDIT PRODUCT FORM ========== -->
+    <!--EDIT PRODUCT FORM-->
     <div id="editProductModal" class="edit-modal">
       <div class="modal-content edit-container-box">
         <div class="edit-header">
@@ -191,13 +195,13 @@
 
         <!-- IMAGE -->
         <div class="edit-image-block">
-          <img src="../User/5.png" class="edit-img" />
-          <input type="file" id="productImageInput" />
+          <img src="#" class="edit-img" id="edit-preview-img" />
+          <input type="file" id="edit-image-input" />
 
           <div class="edit-thumbs">
-            <img src="../User/5.png" />
-            <img src="../User/1.jpg" />
-            <img src="../User/2.jpg" />
+            <img src="#" />
+            <img src="#" />
+            <img src="#" />
           </div>
         </div>
 
@@ -205,64 +209,85 @@
         <div class="edit-input-grid">
           <div class="input-group">
             <label>Product Code:</label>
-            <input type="text" value="SP001" />
+            <input type="text" id="edit-code" />
           </div>
 
           <div class="input-group">
             <label>Product Name:</label>
-            <input type="text" value="Natural Oak Dining Table" />
+            <input type="text" id="edit-name" />
           </div>
 
           <div class="input-group">
             <label>Category:</label>
-            <select>
-              <option>Table</option>
-              <option>Chair</option>
-              <option>Cabinet</option>
-              <option>Sofa</option>
+            <select id="edit-category">
+              <option value="1">Sofa</option>
+              <option value="2">Dresser</option>
+              <option value="3">Nightstands</option>
+              <option value="4">Bed</option>
+              <option value="5">Bookcase</option>
+              <option value="6">BeanBag Chair</option>
+              <option value="7">Dining Table</option>
+              <option value="8">Dining Chair</option>
+              <option value="9">Bar & Kitchen</option>
+              <option value="10">Desks</option>
+              <option value="11">Desks Chair</option>
+              <option value="12">TV Shelf</option>
             </select>
           </div>
 
           <div class="input-group">
             <label>Material:</label>
-            <input type="text" value="Natural Oak Wood" />
+            <input type="text" id="edit-material" />
           </div>
 
           <div class="input-group">
             <label>Cost Price:</label>
-            <input type="text" value="3000000" />
+            <input type="number" id="edit-cost-price" />
           </div>
 
           <div class="input-group">
-            <label>Selling Price:</label>
-            <input type="text" value="4500000" />
+            <label>Price:</label>
+            <input type="number" id="edit-price" />
           </div>
 
           <div class="input-group">
             <label>Color:</label>
-            <input type="text" value="Light Brown" />
+            <input type="text" id="edit-color" />
           </div>
 
           <div class="input-group">
-            <label>Size:</label>
-            <input type="text" value="160 x 80 x 75 cm" />
+            <label>Dimensions:</label>
+            <input type="text" id="edit-dimensions" />
           </div>
 
           <div class="input-group">
             <label>Weight:</label>
-            <input type="text" value="45kg" />
+            <input type="number" id="edit-weight" />
           </div>
 
           <div class="input-group">
             <label>Quantity:</label>
-            <input type="text" value="10" />
+            <input type="number" id="edit-quantity" />
+          </div>
+
+          <div class="input-group">
+            <label>Brand:</label>
+            <input type="text" id="edit-brand" />
+          </div>
+
+          <div class="input-group">
+            <label>IsActive:</label>
+            <select id="edit-active">
+              <option value="1">Currently for sale</option>
+              <option value="0">Closed for sale</option>
+            </select>
           </div>
         </div>
 
         <!-- DESCRIPTION -->
         <div class="edit-description">
           <label><b>Detailed Description:</b></label>
-          <textarea>Natural oak dining table...</textarea>
+          <textarea id="edit-description"></textarea>
         </div>
 
         <!-- BUTTONS -->
@@ -277,7 +302,7 @@
       </div>
     </div>
 
-    <!-- ========== ADD NEW PRODUCT FORM ========== -->
+    <!--ADD NEW PRODUCT FORM-->
     <div id="ADDProductModal" class="edit-modal">
       <div class="modal-content edit-container-box">
         <div class="edit-header">
@@ -305,73 +330,88 @@
           <div id="image-preview"></div>
         </div>
 
+        <div class="edit-description">
+          <div class="input-group">
+            <label>Product Name:</label>
+            <input type="text" id="add-name" placeholder="Enter product name" />
+          </div>
+        </div>
+
         <!-- INPUTS -->
         <div class="edit-input-grid">
           <div class="input-group">
             <label>Product Code:</label>
-            <input type="text" />
+            <input type="text" id="add-code" placeholder="Example: GHE009" />
           </div>
 
           <div class="input-group">
-            <label>Product Name:</label>
-            <input type="text" />
+            <label>Brand:</label>
+            <input type="text" id="add-brand" />
           </div>
 
           <div class="input-group">
             <label>Category:</label>
-            <select>
-              <option>Table</option>
-              <option>Chair</option>
-              <option>Cabinet</option>
-              <option>Sofa</option>
+            <select id="add-category">
+              <option value="1">Sofa</option>
+              <option value="2">Dresser</option>
+              <option value="3">Nightstands</option>
+              <option value="4">Bed</option>
+              <option value="5">Bookcase</option>
+              <option value="6">BeanBag Chair</option>
+              <option value="7">Dining Table</option>
+              <option value="8">Dining Chair</option>
+              <option value="9">Bar & Kitchen</option>
+              <option value="10">Desks</option>
+              <option value="11">Desks Chair</option>
+              <option value="12">TV Shelf</option>
             </select>
           </div>
 
           <div class="input-group">
             <label>Material:</label>
-            <input type="text" />
+            <input type="text" id="add-material" />
           </div>
 
           <div class="input-group">
             <label>Cost Price:</label>
-            <input type="text" />
+            <input type="number" id="add-cost-price" />
           </div>
 
           <div class="input-group">
-            <label>Selling Price:</label>
-            <input type="text" />
+            <label>Price:</label>
+            <input type="number" id="add-price" />
           </div>
 
           <div class="input-group">
             <label>Color:</label>
-            <input type="text" />
+            <input type="text" id="add-color" />
           </div>
 
           <div class="input-group">
-            <label>Size:</label>
-            <input type="text" />
+            <label>Dimensions:</label>
+            <input type="text" id="add-dimensions" />
           </div>
 
           <div class="input-group">
             <label>Weight:</label>
-            <input type="text" />
+            <input type="number" id="add-weight" />
           </div>
 
           <div class="input-group">
             <label>Quantity:</label>
-            <input type="text" />
+            <input type="number" id="add-quantity" />
           </div>
         </div>
 
         <!-- DESCRIPTION -->
         <div class="edit-description">
           <label><b>Detailed Description:</b></label>
-          <textarea></textarea>
+          <textarea id="add-description"></textarea>
         </div>
 
         <!-- BUTTONS -->
         <div class="edit-buttons">
-          <button class="btn-save">
+          <button class="btn-save" id="btn-save-new">
             <i class="fa-solid fa-floppy-disk"></i> Save
           </button>
           <button class="NUT-HUY">
@@ -382,5 +422,6 @@
     </div>
 
     <script src="Products_Admin.js"></script>
+    <script src="Products_Admin_API.js"></script>
   </body>
 </html>

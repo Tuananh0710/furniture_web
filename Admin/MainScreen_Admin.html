@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Today's Report</title>
     <link rel="stylesheet" href="MainScreen_Admin.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body>
     <div id="header_admin"></div>
@@ -26,23 +27,31 @@
           <div class="icon one">💳</div>
           <div>
             <p>Sales Revenue</p>
-            <h3>0</h3>
+            <h3 id="card-revenue">0</h3>
           </div>
         </div>
 
         <div class="card blue">
           <div class="icon">🛒</div>
           <div>
-            <p>Orders: 0</p>
-            <p>Products: 0</p>
+            <p>Orders:</p>
+            <h3 id="card-orders">0</h3>
           </div>
         </div>
 
         <div class="card red">
+          <div class="icon">🛒</div>
+          <div>
+            <p>Products:</p>
+            <h3 id="card-products">0</h3>
+          </div>
+        </div>
+
+        <div class="card orange">
           <div class="icon">↩️</div>
           <div>
-            <p>Returned Items</p>
-            <h3>0</h3>
+            <p>Returned Products</p>
+            <h3 id="card-returns">0</h3>
           </div>
         </div>
       </div>
@@ -52,39 +61,48 @@
         <div class="info-box">
           <h4>▶ Activity</h4>
           <ul>
-            <li>Sales Revenue <span>0</span></li>
-            <li>Number of Orders <span>0</span></li>
-            <li>Number of Products <span>0</span></li>
-            <li>Customer Returns <span>0</span></li>
+            <li>Sales Revenue <span id="activity-revenue">0</span></li>
+            <li>Number of Orders <span id="activity-orders">0</span></li>
+            <li>Number of Products <span id="activity-products">0</span></li>
           </ul>
         </div>
 
         <div class="info-box yellow">
           <h4>⚙️ Inventory Information</h4>
           <ul>
-            <li>In Stock <span>0</span></li>
-            <li>Out of Stock <span>0</span></li>
-            <li>Low Stock <span>0</span></li>
-            <li>Overstocked <span>0</span></li>
+            <li>In Stock <span id="stock-in">0</span></li>
+            <li>Out of Stock <span id="stock-out">0</span></li>
+            <li>Low Stock <span id="stock-low">0</span></li>
+          </ul>
+        </div>
+
+        <div class="info-box yellow">
+          <h4>⚙️ Inventory Information</h4>
+          <ul>
+            <li>Returns Products <span id="return-products">0</span></li>
+            <li>Returns Orders<span id="return-orders">0</span></li>
           </ul>
         </div>
       </div>
 
       <!-- Row 3: Charts & News -->
       <div class="bottom-section">
-        <div class="bottom-box">
-          <h4>📊 Weekly Sales Chart</h4>
+        <div class="bottom-box chart-container">
+          <h4>📊 Sales Revenue Chart</h4>
+          <div class="chart-wrapper">
+            <canvas id="revenueChart"></canvas>
+          </div>
           <p class="loading">Loading ...</p>
         </div>
-        <div class="bottom-box">
-          <h4>🌐 Web Information</h4>
-          <p class="loading">Loading ...</p>
-        </div>
-        <div class="bottom-box">
-          <h4>📰 Industry News</h4>
+        <div class="bottom-box chart-container">
+          <h4>🌐 Orders Chart</h4>
+          <div class="chart-wrapper">
+            <canvas id="ordersChart"></canvas>
+          </div>
           <p class="loading">Loading ...</p>
         </div>
       </div>
     </div>
+    <script src="MainScreen_Admin.js"></script>
   </body>
 </html>

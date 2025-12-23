@@ -131,10 +131,6 @@ tr:hover {
   cursor: pointer;
 }
 
-#Delete:hover {
-  color: red;
-}
-
 /* Pagination */
 .pagination {
   margin-top: 15px;

@@ -138,3 +138,27 @@ body {
     flex-direction: column;
   }
 }
+
+.chart-container {
+  position: relative;
+  padding: 15px;
+}
+
+.chart-wrapper {
+  height: 250px;
+  position: relative;
+  margin-top: 10px;
+}
+
+.bottom-box canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.loading {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  margin-top: 10px;
+  font-size: 14px;
+}
