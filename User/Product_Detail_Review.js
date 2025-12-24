@@ -79,12 +79,14 @@ async function loadReviews() {
   }
 }
 document.addEventListener("DOMContentLoaded", loadReviews);
-
+//
+//
+//
+//
 //
 //
 //
 const summaryApiUrl = `http://localhost:3000/api/reviews/product/${currentProductId}/average-rating`;
-
 async function loadReviewSummary() {
   try {
     const response = await fetch(summaryApiUrl);
@@ -131,6 +133,143 @@ async function loadReviewSummary() {
   }
 }
 
+//
+//
+//
+//3.theem review
+const currentOrderId = urlParams.get("orderId");
+
+const addReviewBtn = document.querySelector(".add-review-btn");
+const reviewFormContainer = document.getElementById("reviewForm");
+const closeFormBtn = document.getElementById("closeForm");
+const cancelReviewBtn = document.getElementById("cancelReview");
+const submitReviewBtn = document.getElementById("submitReview");
+const starRatingContainer = document.getElementById("starRating");
+const stars = starRatingContainer.querySelectorAll(".star");
+const ratingValueInput = document.getElementById("ratingValue");
+const reviewContentInput = document.getElementById("reviewContent");
+const formBody = document.getElementById("formBody");
+const formSuccess = document.getElementById("formSuccess");
+const closeSuccessBtn = document.getElementById("closeSuccess");
+
+if (addReviewBtn) {
+  if (currentProductId && currentOrderId) {
+    addReviewBtn.style.display = "block";
+
+    addReviewBtn.addEventListener("click", () => {
+      reviewFormContainer.style.display = "flex";
+      resetForm();
+    });
+  } else {
+    addReviewBtn.style.display = "none";
+  }
+}
+
+function closeReviewForm() {
+  reviewFormContainer.style.display = "none";
+}
+
+if (closeFormBtn) closeFormBtn.addEventListener("click", closeReviewForm);
+if (cancelReviewBtn) cancelReviewBtn.addEventListener("click", closeReviewForm);
+if (closeSuccessBtn)
+  closeSuccessBtn.addEventListener("click", () => {
+    closeReviewForm();
+    loadReviews();
+    loadReviewSummary();
+  });
+
+stars.forEach((star) => {
+  star.addEventListener("click", function () {
+    const rating = this.getAttribute("data-rating");
+    ratingValueInput.value = rating;
+    updateStarVisuals(rating);
+    checkFormValidity();
+  });
+});
+
+function updateStarVisuals(rating) {
+  stars.forEach((star) => {
+    const starRating = star.getAttribute("data-rating");
+    if (starRating <= rating) {
+      star.classList.add("selected");
+      star.style.color = "#FFD700";
+    } else {
+      star.classList.remove("selected");
+      star.style.color = "#ccc";
+    }
+  });
+}
+
+function checkFormValidity() {
+  const rating = ratingValueInput.value;
+  const content = reviewContentInput.value.trim();
+
+  if (rating > 0 && content.length > 0) {
+    submitReviewBtn.disabled = false;
+    submitReviewBtn.classList.add("active");
+  } else {
+    submitReviewBtn.disabled = true;
+    submitReviewBtn.classList.remove("active");
+  }
+}
+
+reviewContentInput.addEventListener("input", checkFormValidity);
+
+submitReviewBtn.addEventListener("click", async (e) => {
+  e.preventDefault();
+
+  const rating = ratingValueInput.value;
+  const comment = reviewContentInput.value;
+
+  const reviewData = {
+    orderId: currentOrderId,
+    productId: currentProductId,
+    rating: rating,
+    comment: comment,
+  };
+
+  try {
+    submitReviewBtn.innerHTML =
+      '<i class="fas fa-spinner fa-spin"></i> Sending...';
+
+    const token = localStorage.getItem("token");
+    const response = await fetch("http://localhost:3000/api/reviews/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(reviewData),
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
+      formBody.style.display = "none";
+      formSuccess.style.display = "flex";
+    } else {
+      alert("Lỗi: " + (result.message || "Không thể gửi đánh giá"));
+      submitReviewBtn.innerHTML =
+        '<i class="fas fa-paper-plane"></i> SUBMIT REVIEW';
+    }
+  } catch (error) {
+    console.error("Error submitting review:", error);
+    alert("Đã có lỗi xảy ra khi kết nối đến server.");
+    submitReviewBtn.innerHTML =
+      '<i class="fas fa-paper-plane"></i> SUBMIT REVIEW';
+  }
+});
+
+function resetForm() {
+  ratingValueInput.value = 0;
+  reviewContentInput.value = "";
+  updateStarVisuals(0);
+  submitReviewBtn.disabled = true;
+  formBody.style.display = "block";
+  formSuccess.style.display = "none";
+  submitReviewBtn.innerHTML =
+    '<i class="fas fa-paper-plane"></i> SUBMIT REVIEW';
+}
 document.addEventListener("DOMContentLoaded", () => {
   loadReviews();
   loadReviewSummary();

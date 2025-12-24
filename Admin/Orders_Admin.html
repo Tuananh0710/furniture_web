@@ -13,9 +13,7 @@
     <link rel="stylesheet" href="Orders_Admin.css" />
   </head>
   <body>
-    <!-- Section to display the header -->
     <div id="header_admin"></div>
-    <!-- Script to automatically load header.html -->
     <script>
       fetch("Header_Admin.html")
         .then((response) => response.text())
@@ -26,7 +24,6 @@
     </script>
 
     <div class="container">
-      <!-- Sidebar -->
       <div class="sidebar">
         <div class="filter-box">
           <h4>Search</h4>
@@ -55,19 +52,16 @@
       <div class="main-content">
         <div class="header">
           <h2>Orders</h2>
-          <div class="buttons">
-            <button class="add"></button>
-          </div>
         </div>
 
         <table>
           <thead>
             <tr>
-              <th>OrderID</th>
-              <th>Customer Name</th>
+              <th>OrderCode</th>
+              <th>CustomerName</th>
               <th>OrderDate</th>
               <th>Phone</th>
-              <th>Address</th>
+              <th>ShippingAddress</th>
               <th>Total</th>
               <th>Status</th>
               <th>Action</th>
@@ -202,5 +196,6 @@
     </div>
 
     <script src="Orders_Admin.js"></script>
+    <script src="Orders_Admin_API.js"></script>
   </body>
 </html>
